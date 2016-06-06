@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>闪链私人股权交易平台</title>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .section {
+      margin: 20px;
+    }
+    button {
+      padding: 5px 16px;
+      border-radius: 4px;
+    }
+    button#logon1 { background-color: yellow; }
+    button#logon2 { background-color: #98fb98; }
+    
+  </style>
+  <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+  <script src="./applyTransfer.js"></script>
+
+ 
+
+</head>
+<body>
+<img src="pics/Step4.png" >
+  
+
+  <hr/>
+
+
+
+  <div class="section">
+<form>
+公司全称:<input id="quancheng" >
+ <input id="regcompany" type="button" value="企业登记" onclick="fregcompany()"></input>
+<span style="color:green;" id="sbmCompResult"></span>
+</form>
+  </div>
+  <div class="section">
+<input id="regperson" type="button" value="股东登记" onclick="fregperson()"></input>
+<span style="color:green;" id="sbmPersonResult"></span>
+<input id="view" type="button" value="区块链交易结果" onclick="fview()">
+<span style="color:green;"  id="viewResult"></span>
+  </div>
+  <div class="section">
+      <button id="goback">取消</button>
+  </div>
+ 
+
+  
+
+</body>
+</html>
