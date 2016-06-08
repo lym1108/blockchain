@@ -52,11 +52,19 @@
         <img class="SecondTitle" src="./images/step3-title2-2.png" />
 
         <div id="money-input-div">
-            <span>账户余额：</span>
-            <input class="input-text" type="text" value="19,000,000" disabled="true" />
-            <span>元</span>
-            <button id="chongzhi" onclick="chongzhi()" class="btnNew">我要充值</button>
-            <button id="tixian" onclick="tixian()" class="btnNormal">提现</button>
+            <div>
+                <span>账户余额：</span>
+                <input class="input-text" type="text" value="{{zijin}}" disabled="true" id="zijin" />
+                <span>元</span>
+                <button id="chongzhi" onclick="fmodify('+')" class="btnNew">我要充值</button>
+            </div>
+            <div class="input-div">
+                <span>提现金额：</span>
+                <input class="input-text" type="text" id="shuliang" />
+                <span>元</span>
+                <button id="tixian" onclick="fmodify('-')" class="btnNormal">提现</button>
+                <span id="sbmResult"></span>
+            </div>
         </div>
 
         <img class="SecondTitle" src="./images/step3-title2-3.png" />

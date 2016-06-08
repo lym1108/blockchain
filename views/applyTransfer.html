@@ -1,57 +1,70 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <title>闪链私人股权交易平台</title>
-  
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-    .section {
-      margin: 20px;
-    }
-    button {
-      padding: 5px 16px;
-      border-radius: 4px;
-    }
-    button#logon1 { background-color: yellow; }
-    button#logon2 { background-color: #98fb98; }
-    
-  </style>
-  <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
-  <script src="./applyTransfer.js"></script>
-
- 
-
+    <title>闪链私人股权交易平台</title>
+    <meta http-equiv="http-Context" charset="utf-8" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/applyTransfer.css" />
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="./applyTransfer.js"></script>
 </head>
+
 <body>
-<img src="pics/Step4.png" >
-  
-
-  <hr/>
-
-
-
-
- <div class="section">
-<form class="form" method="post" >
-申请转让数量:<input id="shuliang" name="shuliang">
-申请转让价格:<input id="jiage" name="jiage">
-转让理由:<input id="liyou" name="liyou">
- <input id="regcompany" type="button" value="提交" onclick="fapplyTransfer()">
-<span style="color:green;" id="sbmResult"></span>
-<span style="display:none;" id="compAddr"></span>
-</form>
-  </div>
-
-
-  <div class="section">
-      <button id="goback">取消</button>
-  </div>
- 
-
-  
-
+    <div id="header">
+        <img id="logo" src="./images/logo2.jpg" />
+        <img id="person" src="./images/fbb2.jpg" />
+    </div>
+    <div id="mainbody">
+        <img class="FirstTitle" src="./images/step4-1.png" />
+        <img class="SecondTitle" src="./images/step4-2.png" />
+        <table class="table">
+            <tr>
+                <th>公司名称</th>
+                <th>Address验证</th>
+                <th>持有股份</th>
+                <th>冻结数量</th>
+                <th>申请转让数量</th>
+            </tr>
+            <tr>
+                <td>链舞（深圳）科技股份有限公司</td>
+                <td style="color:#4f9ce9">1BCfg584dfgGSD5151d5F55D85415G154SE</td>
+                <td>500万股</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+        </table>
+        <img class="SecondTitle" src="./images/step4-3.png" />
+        <form class="form" method="post">
+            <div class="input-div">
+                <span class="red">*</span>
+                <span>申请转让数量：</span>
+                <input id="shuliang" name="shuliang" class="input-text" type="text" placeholder="您最多可以申请1000万股" />
+                <span>股</span>
+            </div>
+            <div class="input-div">
+                <span class="red">*</span>
+                <span>申请转让价格：</span>
+                <input id="jiage" name="jiage" class="input-text" type="text" placeholder="请精确到小数点后两位" />
+                <span>元</span>
+            </div>
+            <div class="input-div">
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;转让理由：</span>
+                <textarea class="div-textare" id="liyou" name="liyou"></textarea>
+            </div>
+            <div id="btn">
+                <button id="goback" value="取消" class="btnNormal">取消</button>
+                <button id="regcompany" onclick="fapplyTransfer()" value="提交" class="btnBlue">提交</button>
+            </div>
+        </form>
+        <div id="message">
+            <span style="color:green;" id="sbmResult"></span>
+            <span style="display:none;" id="compAddr"></span>
+        </div>
+    </div>
+    <div id="footer">
+        <img id="footer" src="./images/footer.jpg" />
+    </div>
 </body>
+
 </html>
