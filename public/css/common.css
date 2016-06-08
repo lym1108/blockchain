@@ -1,0 +1,91 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    width: 1280px;
+}
+#logo{
+    float: left;
+}
+#mainbody{
+    width: 80%;
+    margin: 30px auto;
+}
+.SecondTitle{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.table{
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    border-top: 1px solid #dddddd;
+    border-left: 1px solid #dddddd;
+    border-spacing: 0px;
+}
+.table th{
+    border-right: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    margin: 0px;
+    padding: 5px;
+}
+.table td{
+    border-right: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    margin: 0px;
+    padding: 5px;
+}
+.red{
+    color: red;
+}
+.input-text {
+    width: 367px;
+    height: 34px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding-left: 10px;
+}
+.div-textare{
+    width: 367px;
+    height: 134px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding-left: 10px;
+}
+.btnBlue{
+    width: 98px;
+    height: 34px;
+    background: #2383e3;
+    color: white;
+    border: 0px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.btnNew{
+    width: 98px;
+    height: 34px;
+    background: #ff4700;
+    color: white;
+    border: 0px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.btnNormal{
+    width: 71px;
+    height: 34px;
+    background: white;
+    color: black;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.btnNormal2{
+    width: 71px;
+    height: 25px;
+    background: white;
+    color: black;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    font-size: 14px;
+}
