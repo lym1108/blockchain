@@ -327,7 +327,103 @@ app.post('/changeStatus', function(req, res){
 });
 //股权中心首页点击受让申请列表
 app.get('/shourang', function(req, res){
-	res.render('shourang');
+	//查询本股交中心的受让申请
+	var addrCenter = req.query.addr  || '';
+	connection.query('select quancheng,name,transfer.shuliang as Ashuliang,jiage,transfer.id as Aid from transfer,transfer_app,center_company,company_info,person_info  where transfer.idapp=transfer_app.id and transfer_app.company=center_company.addrCompany and transfer_app.company=company_info.addr and transfer.addrIn=person_info.addr and addrCenter = ?',[addrCenter],function(err,result){
+		if(err){
+			console.log('[select error]-',err.message);
+			return ;
+		}
+		var passdata = {};
+		for(var i=0;i<result.length;i++)
+		{
+			if(i>=3)
+				break;
+			passdata['company'+i]=result[i].quancheng;
+			passdata['applicant'+i]=result[i].name;
+			passdata['shuliang'+i] = result[i].Ashuliang;
+			passdata['zijin'+i] = result[i].Ashuliang * result[i].jiage;
+			passdata['app'+i] = result[i].Aid;
+		}
+		res.render('shourang',passdata);
+   	 });
+});
+//受让详情
+app.get('/shourangDetail', function(req, res){
+	//查询本股交中心的申请
+	var addrCenter = req.query.addr  || '';
+	var appId = req.query.app  || '';
+
+	connection.query('select person_info1.name as name1, person_info2.name as name2 ,person_info1.zhengjian as zhengjian1, person_info2.zhengjian as zhengjian2,quancheng,addrCenter,addrCompany,addrOut,addrIn,jiage,liyou,transfer_app.shuliang as shuliang1,transfer.shuliang as shuliang2 from transfer,transfer_app,person_info as person_info1,person_info as person_info2 ,company_info ,center_company where  transfer.idapp=transfer_app.id and transfer.addrIn=person_info2.addr and transfer_app.addrOut=person_info1.addr and transfer_app.company=company_info.addr and transfer_app.company=center_company.addrCompany and transfer.id = ?',[appId],function(err,result){
+		if(err){
+			console.log('[select error]-',err.message);
+			return ;
+		}
+		var passdata = {};
+		passdata['xingming1']=result[0].name1;
+		passdata['zhengjianhao1']=result[0].zhengjian1;
+		passdata['qiye']=result[0].quancheng;
+		var stock = platform.getStock.call(result[0].addrCenter,result[0].addrCompany,result[0].addrOut) ;
+		passdata['stock'] = stock[0];
+		passdata['frozen'] = stock[1];
+		passdata['shuliang1'] = result[0].shuliang1;
+		passdata['jiage']=result[0].jiage;
+		passdata['liyou']=result[0].liyou;
+		passdata['xingming2']=result[0].name2;
+		passdata['zhengjianhao2']=result[0].zhengjian2;
+		passdata['shuliang2']= result[0].shuliang2;
+		passdata['zonge'] = result[0].shuliang2 * result[0].jiage;
+		passdata['zijin'] = platform.getFunds.call(result[0].addrIn) ;
+
+		res.render('shourangDetail',passdata);
+   	 });
+});
+//批准或驳回受让申请
+app.post('/changeStatus2', function(req, res){
+	var appId = req.query.app  || '';
+	var status = req.body.result  || '';
+
+	connection.query('select status from transfer where id = ?',[appId],function(err,result){
+		if(err){
+			console.log('[select error]-',err.message);
+			return ;
+		}
+		if (result[0].status=='R')
+			return res.send("已驳回");
+		else if(result[0].status=='A')
+			return res.send("已批准");
+		else if(result[0].status=='F')
+			return res.send("已完结");
+		if (status=='A')
+		{
+			connection.query('select addrCenter, company,addrIn,addrOut,jiage ,transfer.shuliang as Ashuliang from transfer, transfer_app , center_company where  transfer.idapp=transfer_app.id and transfer_app.company=center_company.addrCompany and transfer.id=?',[appId],function(err,result){
+				if(err){
+					console.log('[select error]-',err.message);
+					return ;
+				}
+				var txhash = platform.transfer.sendTransaction(result[0].addrCenter,result[0].company,result[0].addrOut,result[0].addrIn,result[0].Ashuliang,result[0].jiage,{from: web3.eth.accounts[0]}) ;
+				console.log('转让成交txhash:'+txhash);
+				connection.query('update transfer set status = ?,txhash=? where id =?',[status,txhash,appId],function(err,result){
+					if(err){
+						console.log('[update error]-',err.message);
+						return res.send("提交失败");
+					}
+					res.end();
+				});
+			
+			});
+		}
+		else if(status=='R')
+		{
+			connection.query('update transfer set status = ? where id =?',[status,appId],function(err,result){
+				if(err){
+					console.log('[update error]-',err.message);
+					return res.send("提交失败");
+				}
+				res.end();
+			});
+		}
+	});
 });
 //***********************************************************用户************************************************
 //用户登录
@@ -394,7 +490,7 @@ app.post('/sbmShourang', function(req, res){
 	var appId = req.query.app  || '';
 	var shuliang = req.body.shuliang_app  || '';
 	var zonge = req.body.total_app  || '';
-	if (zonge >0)
+	if (zonge > platform.getFunds.call(addrPerson) )
 		return res.send('资金余额不足,请到个人中心充值');
 	//插入受让申请表
 	connection.query( 'insert into transfer(idapp,addrIn,shuliang,status,txhash)values(?,?,?,?,?)',[appId,addrPerson,shuliang,'N',''],function(err,result){

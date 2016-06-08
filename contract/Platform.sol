@@ -31,7 +31,7 @@ contract Platform {
       return ;
     }
     balances[center][company][shareholder].all = amount;
-    writelog("success");
+    writelog("success:register");
   }
 
 
@@ -43,7 +43,7 @@ contract Platform {
       return ;//可冻结股份不足
     }
     balances[center][company][shareholder].frozen += amount ;
-    writelog("success");
+    writelog("success:freeze");
   }
 
   //解冻
@@ -54,7 +54,7 @@ contract Platform {
       return ;//可解冻股份不足
     }
     balances[center][company][shareholder].frozen -= amount ;
-    writelog("success");
+    writelog("success:unfreeze");
   }
 
   //交易
@@ -66,7 +66,7 @@ contract Platform {
     }
     balances[center][company][sender].all -= amount ;
     balances[center][company][receiver].all += amount ;
-    writelog("success");
+    writelog("success:stockTx");
     return true;
   }
 
@@ -78,13 +78,12 @@ contract Platform {
       return ;
     }
     money[person] += amount;
-    writelog("success");
+    writelog("success:modify");
   }
 
 
   //交易
   function fundsTx(address sender, address receiver, uint amount) public returns (bool result){
-    writelog("stop5");
     if(money[sender] < amount)
     {
       writelog("failure:可交易资金不足");
@@ -92,7 +91,7 @@ contract Platform {
     }
     money[sender] -= amount ;
     money[receiver] += amount ;
-    writelog("success");
+    writelog("success:fundsTx");
     return true;
   }
 
@@ -101,7 +100,7 @@ contract Platform {
     stockTx(center,company,person1, person2, amount) ;
     fundsTx(person2, person1,  amount*price); 
  
-     writelog("success");
+     writelog("success:transfer");
   }
 
 }

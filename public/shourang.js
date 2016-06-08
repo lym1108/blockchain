@@ -13,6 +13,6 @@ return "";
 }
 function fdetail(appId){
 	if(appId!='')
-		window.location.href="/zhuanrangDetail?addr="+GetQueryString("addr")+"&app="+appId;
+		window.location.href="/shourangDetail?addr="+GetQueryString("addr")+"&app="+appId;
 }
 
