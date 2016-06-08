@@ -3,44 +3,37 @@ window.onload = function() {
 
 
 	$("#logon").click(function() {
-
-				  window.location.href="/logon?from=center&addr="+GetQueryString("addr");
-
+		window.location.href="/logon?from=center&addr="+GetQueryString("addr");
 	});
+
         $("#goback").click(function() {
-
-				  window.location.href="/?addr="+GetQueryString("addr");
-
+			window.location.href="/?addr="+GetQueryString("addr");
 	});
+
 	$("#register").click(function() {
-
-				  window.location.href="/register?addr="+GetQueryString("addr");
-
+		if(GetQueryString("addr")=="")
+			$("#logonResult1").html("请先登录");
+		else
+			window.location.href="/register?addr="+GetQueryString("addr");
 	});
 
-	$("#person").click(function() {
-		$.ajax({
-			url:"/b/logon",
-			type:"get",
-			dataType : "text",
-			data:{addr:$("#personAdrr").val(),pw:$("#centerPw").val()},
-			error:function(XMLHttpRequest,textStatus,errorThrown){
-				alert(XMLHttpRequest.status);
-				alert(XMLHttpRequest.readyState);
-				alert(textStatus);
-			},
-			success:function(data){
-				if(data)
-				  $("#logon2Result").html(data);
-				else
-				  window.location.href="/bindex?addr="+$("#personAdrr").val();
-			}
-		});
+	$("#zhuanrang").click(function() {
+		if(GetQueryString("addr")=="")
+			$("#logonResult2").html("请先登录");
+		else
+			window.location.href="/zhuanrang?addr="+GetQueryString("addr");
 	});
-	$("#center").click(function() {
-
-				  window.location.href="/center";
-
+	$("#shourang").click(function() {
+		if(GetQueryString("addr")=="")
+			$("#logonResult3").html("请先登录");
+		else
+			window.location.href="/shourang?addr="+GetQueryString("addr");
+	});
+	$("#zhuanrangGD").click(function() {
+		if(GetQueryString("addr")=="")
+			$("#logonResult4").html("请先登录");
+		else
+			window.location.href="/zhuanrangGD?addr="+GetQueryString("addr");
 	});
 };
 

@@ -118,9 +118,11 @@ app.get('/person', function(req, res){
 					break;
 				passdata['center'+i]=result[i].centerName;
 				passdata['company'+i]=result[i].compName;
+				passdata['comp'+i] = result[i].compAddr;
 				var stock = platform.getStock.call(result[i].centerAddr,result[i].compAddr,addrPerson) ;
 				passdata['stock'+i] = stock[0];
 				passdata['frozen'+i] = stock[1];
+
 			}
 			res.render('person',passdata);
 		});
@@ -129,6 +131,28 @@ app.get('/person', function(req, res){
 
  	
 });
+//点击转让,至个人股权转让申请页面
+app.get('/applyTransfer', function(req, res){
+    res.render('applyTransfer');
+});
+//个人股权转让申请点击提交
+app.post('/sbmApplyTransfer', function(req, res){
+	var addrOut =  req.query.addr  || '';
+	var company =  req.query.compId || '';
+	var shuliang =  req.body.shuliang  ;
+	var jiage =  req.body.jiage  ;
+	var liyou = req.body.liyou  || '';
+	//插入转让申请表
+	connection.query( 'insert into transfer_app(addrOut,company,shuliang,jiage,liyou,platform,status)values(?,?,?,?,?,?,?)',[addrOut,company,shuliang,jiage,liyou,'N','N'],function(err,result){
+   		if(err){
+		     console.log('[error]转让申请插入transfer_app:',err.message);
+		     res.send('插入数据库失败');
+		     return ;
+		}
+		console.log('股权转让申请提交成功');res.send({});
+	});  	
+});
+
 //托管登记
 app.get('/register', function(req, res){
     res.render('register');
@@ -218,9 +242,83 @@ app.get('/a/logon', function(req, res){
 		res.end();
     });
 });
-
-
-
+//股权中心首页点击转让申请列表
+app.get('/zhuanrang', function(req, res){
+	//查询本股交中心的申请
+	var addrCenter = req.query.addr  || '';
+	connection.query('select * from transfer_app,center_company,company_info,person_info where transfer_app.company=center_company.addrCompany and transfer_app.company=company_info.addr and transfer_app.addrOut=person_info.addr and addrCenter = ?',[addrCenter],function(err,result){
+		if(err){
+			console.log('[select error]-',err.message);
+			return ;
+		}
+		var passdata = {};
+		for(var i=0;i<result.length;i++)
+		{
+			if(i>=3)
+				break;
+			passdata['company'+i]=result[i].quancheng;
+			passdata['applicant'+i]=result[i].name;
+			passdata['shuliang'+i] = result[i].shuliang;
+			var stock = platform.getStock.call(result[i].addrCenter,result[i].addrCompany,result[i].addrOut) ;
+			passdata['stock'+i] = stock[0];
+			passdata['app'+i] = result[i].id;
+		}
+		res.render('zhuanrang',passdata);
+   	 });
+});
+//转让详情
+app.get('/zhuanrangDetail', function(req, res){
+	//查询本股交中心的申请
+	var addrCenter = req.query.addr  || '';
+	var appId = req.query.app  || '';
+	connection.query('select * from transfer_app,center_company,company_info,person_info where transfer_app.company=center_company.addrCompany and transfer_app.company=company_info.addr and transfer_app.addrOut=person_info.addr and id = ?',[appId],function(err,result){
+		if(err){
+			console.log('[select error]-',err.message);
+			return ;
+		}
+		var passdata = {};
+		passdata['xingming']=result[0].name;
+		passdata['zhengjianhao']=result[0].zhengjian;
+		passdata['qiye']=result[0].quancheng;
+		var stock = platform.getStock.call(result[0].addrCenter,result[0].addrCompany,result[0].addrOut) ;
+		passdata['stock'] = stock[0];
+		passdata['frozen'] = stock[1];
+		passdata['shuliang'] = result[0].shuliang;
+		passdata['jiage']=result[0].jiage;
+		passdata['liyou']=result[0].liyou;
+		res.render('zhuanrangDetail',passdata);
+   	 });
+});
+//批准或驳回转让申请
+app.post('/changeStatus', function(req, res){
+	var appId = req.query.app  || '';
+	var status = req.body.result  || '';
+	var platform = req.body.shanlian || '';
+	connection.query('select status from transfer_app where id = ?',[appId],function(err,result){
+		if(err){
+			console.log('[select error]-',err.message);
+			return ;
+		}
+		if (result[0].status=='R')
+			return res.send("已驳回");
+		else if(result[0].status=='A')
+			return res.send("已批准");
+		else if(result[0].status=='F')
+			return res.send("已完结");
+		connection.query('update transfer_app set platform = ?, status = ? where id =?',[platform,status,appId],function(err,result){
+			if(err){
+				console.log('[update error]-',err.message);
+				res.send("提交失败");
+				return ;
+			}
+			res.end();
+		});
+	});
+});
+//股权中心首页点击受让申请列表
+app.get('/shourang', function(req, res){
+	res.render('shourang');
+});
 //***********************************************************用户************************************************
 //用户登录
 app.get('/b/logon', function(req, res){
@@ -239,7 +337,63 @@ app.get('/b/logon', function(req, res){
 		res.end();
     });
 });
+//用户在股权中心首页点击转让申请列表
+app.get('/zhuanrangGD', function(req, res){
+	//查询本股交中心的申请
+	var addrPerson = req.query.addr  || '';
+	connection.query('select * from transfer_app,center_company,company_info,center_info where transfer_app.company=center_company.addrCompany and transfer_app.company=company_info.addr and center_company.addrCenter=center_info.addr and status = ? and  (platform =? or addrCenter = ?)',['A','Y','0x3fd482195ebe1dc2c5a263a01fc92e38f60bd499'],function(err,result){
+		if(err){
+			console.log('[select error]-',err.message);
+			return ;
+		}
+		var passdata = {};
+		for(var i=0;i<result.length;i++)
+		{
+			if(i>=3)
+				break;
+			passdata['app'+i] = result[i].id;
+			passdata['center'+i] = result[i].name;
+			passdata['company'+i]=result[i].quancheng;
+			passdata['shuliang'+i] = result[i].shuliang;
+			passdata['jiage'+i] = result[i].shuliang;			
+		}
+		res.render('zhuanrangGD',passdata);
+   	 });
+});
+//转让详情
+app.get('/zhuanrangGDDetail', function(req, res){
+	//查询本股交中心的申请
+	var addrCenter = req.query.addr  || '';
+	var appId = req.query.app  || '';
+	connection.query('select * from transfer_app,company_info where transfer_app.company=company_info.addr and id = ?',[appId],function(err,result){
+		if(err){
+			console.log('[select error]-',err.message);
+			return ;
+		}
+		var passdata = {};
+		passdata['company'] = result[0].quancheng;
+		passdata['shuliang'] = result[0].shuliang;
+		passdata['jiage']=result[0].jiage;
+		passdata['total']=result[0].jiage*result[0].shuliang;
+		res.render('zhuanrangGDDetail',passdata);
+   	 });
+});
+//提交受让申请
+app.post('/sbmShourang', function(req, res){
+	var addrPerson = req.query.addr  || '';
+	var appId = req.query.app  || '';
+	var shuliang = req.body.shuliang_app  || '';
 
+	//插入受让申请表
+	connection.query( 'insert into transfer(idapp,addrIn,shuliang,status,txhash)values(?,?,?,?,?)',[appId,addrPerson,shuliang,'N',''],function(err,result){
+   		if(err){
+		     console.log('[error]受让申请插入transfer:',err.message);
+		     res.send('插入数据库失败');
+		     return ;
+		}
+		console.log('股权受让申请提交成功');res.end();
+	}); 
+});
 
 
 

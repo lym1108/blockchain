@@ -1,7 +1,9 @@
 window.onload = function() {
         $("#goback").click(function() {
-				  window.location.href="/?addr="+GetQueryString("addr");
+				  window.location.href="/person?addr="+GetQueryString("addr");
 	});
+
+
 };
 
 function GetQueryString(name)
@@ -11,13 +13,17 @@ if(r!=null)
 return unescape(r[2]);
 return ""; 
 }
-function fregcompany(){
-		if($("#quancheng").val()==''){
-			$(sbmCompResult).html('请填入公司全称');
+function fapplyTransfer(){
+		if($("#shuliang").val()==''){
+			$(sbmResult).html('请填入申请转让数量');
+			return;
+			}
+		else if($("#jiage").val()==''){
+			$(sbmResult).html('请填入申请转让价格');
 			return;
 			}
 		$.ajax({
-			url:'/regCompany?addr='+GetQueryString("addr"),
+			url:'/sbmApplyTransfer?addr='+GetQueryString("addr")+"&compId="+GetQueryString("compId"),
 			type:"post",
 			dataType : "text",
 			data:$('form').serialize(),
@@ -27,51 +33,9 @@ function fregcompany(){
 				alert(textStatus);
 			},
 			success:function(data){
-				$(sbmCompResult).html(data);
+				window.location.href="/person?addr="+GetQueryString("addr");
 			}
 		});
 }
 
-function fregperson(){
-		if($("#sbmCompResult").text()!='登记成功'){
-			$(sbmPersonResult).html('请先进行企业登记');
-			return;
-		}
-		$.ajax({
-			url:'/regPerson?addrCenter='+GetQueryString("addr"),
-			type:"get",
-			dataType : "text",
-			error:function(XMLHttpRequest,textStatus,errorThrown){
-				alert(XMLHttpRequest.status);
-				alert(XMLHttpRequest.readyState);
-				alert(textStatus);
-			},
-			success:function(data){
-				$(sbmPersonResult).html(data);
-			}
-		});
-}
-
-function fview(){
-if($("#sbmCompResult").text()!='登记成功'){
-$(viewResult).html('请先进行企业登记');
-return;
-}else if($("#sbmPersonResult").text()!='已提交')
-{$(viewResult).html('请先提交股东登记');
-return;
-}
-$.ajax({
-			url:'/viewRegPerson?addrCenter='+GetQueryString("addr"),
-			type:"get",
-			dataType : "text",
-			error:function(XMLHttpRequest,textStatus,errorThrown){
-				alert(XMLHttpRequest.status);
-				alert(XMLHttpRequest.readyState);
-				alert(textStatus);
-			},
-			success:function(data){
-				$(viewResult).html(data);
-			}
-		});
-}
 

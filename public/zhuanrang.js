@@ -1,14 +1,7 @@
 window.onload = function() {
-
-
-
         $("#goback").click(function() {
-
 				  window.location.href="/?addr="+GetQueryString("addr");
-
 	});
-
-	
 };
 
 function GetQueryString(name)
@@ -18,9 +11,8 @@ if(r!=null)
 return unescape(r[2]);
 return ""; 
 }
-
-function ftransfer1(){
-	window.location.href="/applyTransfer?addr="+GetQueryString("addr")+"&compId="+$("#comp1").text();
+function fdetail(appId){
+	if(appId!='')
+		window.location.href="/zhuanrangDetail?addr="+GetQueryString("addr")+"&app="+appId;
 }
-
 

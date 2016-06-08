@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>闪链私人股权交易平台</title>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .section {
+      margin: 20px;
+    }
+    button {
+      padding: 5px 16px;
+      border-radius: 4px;
+    }
+    button#logon1 { background-color: yellow; }
+    button#logon2 { background-color: #98fb98; }
+    
+  </style>
+  <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+  <script src="./zhuanrangGD.js"></script>
+
+ 
+
+</head>
+<body>
+<img src="pics/Step7.png" >
+  
+
+  <hr/>
+
+
+<table border="1" width="800">
+<tr>
+<td>交易中心</td><td>公司名称</td><td>转让数量</td><td>转让价格</td><td>操作</td>
+</tr>
+
+<tr>
+<span style="display:none;" id="app1">{{app0}}</span>
+<td><span id="center1">{{center0}}</td>
+<td><span id="company1">{{company0}}</td>
+<td><span id="shuliang1">{{shuliang0}}</td>
+<td><span id="jiage1">{{jiage0}}</td>
+<td><input type="button" id="detail1" value="详情" onclick="fdetail('{{app0}}')"></td>
+</tr>
+
+
+<tr>
+<span style="display:none;" id="app2">{{app1}}</span>
+<td><span id="center2">{{center1}}</td>
+<td><span id="company2">{{company1}}</td>
+<td><span id="shuliang2">{{shuliang1}}</td>
+<td><span id="jiage2">{{jiage1}}</td>
+<td><input type="button" id="detail2" value="详情" onclick="fdetail('{{app1}}')"></td>
+</tr>
+
+
+<tr>
+<span style="display:none;" id="app3">{{app2}}</span>
+<td><span id="center3">{{center2}}</td>
+<td><span id="company3">{{company2}}</td>
+<td><span id="shuliang3">{{shuliang2}}</td>
+<td><span id="jiage3">{{jiage2}}</td>
+<td><input type="button" id="detail3" value="详情" onclick="fdetail('{{app2}}')"></td>
+</tr>
+</table>
+
+
+ <div class="section">
+      <button id="goback">返回</button>
+  </div>
+
+  
+
+</body>
+</html>
