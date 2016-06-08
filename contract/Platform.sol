@@ -71,7 +71,7 @@ contract Platform {
   }
 
   //充值,取现
-  function modify(address person,uint amount) public{
+  function modify(address person,int amount) public{
     if (money[person]+amount<0)
     {
       writelog("failure:资金余额不足");
