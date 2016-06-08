@@ -19,8 +19,9 @@ return unescape(r[2]);
 return ""; 
 }
 
-function ftransfer1(){
-	window.location.href="/applyTransfer?addr="+GetQueryString("addr")+"&compId="+$("#comp1").text();
+function ftransfer(compId){
+	if(compId!='')
+	window.location.href="/applyTransfer?addr="+GetQueryString("addr")+"&compId="+compId;
 }
 
 
