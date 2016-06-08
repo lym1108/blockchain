@@ -24,4 +24,27 @@ function ftransfer(compId){
 	window.location.href="/applyTransfer?addr="+GetQueryString("addr")+"&compId="+compId;
 }
 
+function fmodify(type){
+	var number = $("#shuliang").val();
+	if(type =='-')
+		number = -1*number ;
+	if(number==0)
+		$(sbmResult).html("请填入充值或提现数量");
+	 $.ajax({
+		url:'/money?addr='+GetQueryString("addr")+"&app="+GetQueryString("app"),
+		type:"post",
+		dataType : "text",
+		data:{shuliang:number},
+		error:function(XMLHttpRequest,textStatus,errorThrown){
+			alert(XMLHttpRequest.status);
+			alert(XMLHttpRequest.readyState);
+			alert(textStatus);
+		},
+		success:function(data){
+			if(data)
+				$(sbmResult).html(data);
+		}
+	});
+}
+
 

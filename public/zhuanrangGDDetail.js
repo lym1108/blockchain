@@ -1,7 +1,11 @@
 window.onload = function() {
 
+
 	$("#goback").click(function() {
 		 window.location.href="/zhuanrangGD?addr="+GetQueryString("addr");
+	});
+	$("#personCenter").click(function() {
+		 window.location.href="/person?addr="+GetQueryString("addr")+"&app="+GetQueryString("app");
 	});
 
 	
@@ -14,7 +18,9 @@ if(r!=null)
 return unescape(r[2]);
 return ""; 
 }
-
+function compute(){
+	document.getElementById("total_app").innerHTML = $("#shuliang_app").val() * $("#jiage").text();
+}
 function fsubmit(){
 	if($("#shuliang_app").val()=='')
 			$(sbmResult).html("请填申请数量");
@@ -25,7 +31,7 @@ function fsubmit(){
 				url:'/sbmShourang?addr='+GetQueryString("addr")+"&app="+GetQueryString("app"),
 				type:"post",
 				dataType : "text",
-				data:$('form').serialize(),
+				data:{shuliang_app:$("#shuliang_app").val(),total_app:$("#total_app").text()},
 				error:function(XMLHttpRequest,textStatus,errorThrown){
 					alert(XMLHttpRequest.status);
 					alert(XMLHttpRequest.readyState);

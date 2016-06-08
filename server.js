@@ -106,6 +106,7 @@ app.get('/person', function(req, res){
 			return ;
 		}
 		passdata['person']=result[0]['name'];
+		passdata['zijin']=platform.getFunds.call(addrPerson) ;
 		connection.query('select center_info.name as centerName,center_info.addr as centerAddr, company_info.quancheng as compName,company_info.addr as compAddr from center_company,company_person,center_info,company_info where center_company.addrCompany=company_person.addrCompany and center_company.addrCompany=company_info.addr and center_company.addrCenter=center_info.addr and addrPerson = ?',[addrPerson],function(err,result){
 			if(err){
 			console.log('[select error]-',err.message);
@@ -130,6 +131,15 @@ app.get('/person', function(req, res){
    	 });
 
  	
+});
+//点击充值或提现
+app.post('/money', function(req, res){
+	var addrPerson =  req.query.addr  || '';
+	var shuliang =  req.body.shuliang;
+    	//提交至区块链
+	var txhash = platform.modify.sendTransaction(addrPerson,shuliang,{from: web3.eth.accounts[0]}) ;
+	console.log('资金充值提现txhash:'+txhash);
+	res.send("已提交"); 
 });
 //点击转让,至个人股权转让申请页面
 app.get('/applyTransfer', function(req, res){
@@ -383,7 +393,9 @@ app.post('/sbmShourang', function(req, res){
 	var addrPerson = req.query.addr  || '';
 	var appId = req.query.app  || '';
 	var shuliang = req.body.shuliang_app  || '';
-
+	var zonge = req.body.total_app  || '';
+	if (zonge >0)
+		return res.send('资金余额不足,请到个人中心充值');
 	//插入受让申请表
 	connection.query( 'insert into transfer(idapp,addrIn,shuliang,status,txhash)values(?,?,?,?,?)',[appId,addrPerson,shuliang,'N',''],function(err,result){
    		if(err){

@@ -31,7 +31,15 @@
 
   <hr/>
 <div class="section">
-股东姓名:<span style="color:green;" id="gudong">{{person}}</span>
+股东姓名:<span  id="gudong">{{person}}</span>
+  </div>
+
+<div class="section">
+账户余额:<span  id="zijin">{{zijin}}</span>
+<input type="button" id="chongzhi" value="我要充值" onclick="fmodify('+')">
+<input type="button" id="tixian" value="提现" onclick="fmodify('-')">
+数量:<input  id="shuliang"></input>
+<span id="sbmResult"></span>
   </div>
 
 <table border="1" width="800">
