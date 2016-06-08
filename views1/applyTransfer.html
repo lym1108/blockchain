@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>闪链私人股权交易平台</title>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .section {
+      margin: 20px;
+    }
+    button {
+      padding: 5px 16px;
+      border-radius: 4px;
+    }
+    button#logon1 { background-color: yellow; }
+    button#logon2 { background-color: #98fb98; }
+    
+  </style>
+  <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+  <script src="./applyTransfer.js"></script>
+
+ 
+
+</head>
+<body>
+<img src="pics/Step4.png" >
+  
+
+  <hr/>
+
+
+
+
+ <div class="section">
+<form class="form" method="post" >
+申请转让数量:<input id="shuliang" name="shuliang">
+申请转让价格:<input id="jiage" name="jiage">
+转让理由:<input id="liyou" name="liyou">
+ <input id="regcompany" type="button" value="提交" onclick="fapplyTransfer()">
+<span style="color:green;" id="sbmResult"></span>
+<span style="display:none;" id="compAddr"></span>
+</form>
+  </div>
+
+
+  <div class="section">
+      <button id="goback">取消</button>
+  </div>
+ 
+
+  
+
+</body>
+</html>

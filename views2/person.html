@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>个人中心</title>
+    <meta http-equiv="http-Context" charset="utf-8" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/person.css" />
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="./person.js"></script>
+</head>
+
+<body>
+    <div id="header">
+        <img id="logo" src="./images/logo1.jpg" />
+        <img id="person" src="./images/fbb1.jpg" />
+    </div>
+    <div id="mainbody">
+        <img class="FirstTitle" src="./images/step3-title1.png" />
+        <img class="SecondTitle" src="./images/step3-title2-1.png" />
+        <div id="info-left">
+            <div class="input-div">
+                <span class="text">&nbsp;&nbsp;&nbsp;&nbsp;姓名：</span>
+                <input class="input-text" type="text" value="{{person}}" disabled="true" />
+            </div>
+            <div class="input-div">
+                <span>证件号码：</span>
+                <input class="input-text" type="text" value="15428635749851428" disabled="true" />
+            </div>
+            <div class="input-div">
+                <span>联系地址：</span>
+                <input class="input-text" type="text" value="广东省深圳市罗湖区深南东路5045号深业中心大厦" />
+            </div>
+            <div class="input-div">
+                <span>手机号码：</span>
+                <input class="input-text" type="tel" value="13712345678" />
+            </div>
+        </div>
+        <div id="info-right">
+            <div class="input-div">
+                <img src="./images/photo.png" />
+            </div>
+            <div class="input-div">
+                <span>Address：&nbsp;</span>
+                <span style="color:#e34626">1BCfg584dfgGSD5151d5F55D85415G154SE</span>
+            </div>
+            <div id="input-div-email">
+                <span>电子邮箱：</span>
+                <input class="input-text" value="Fanbingbing@sina.com" />
+            </div>
+        </div>
+        <img class="SecondTitle" src="./images/step3-title2-2.png" />
+
+        <div id="money-input-div">
+            <div>
+                <span>账户余额：</span>
+                <input class="input-text" type="text" value="{{zijin}}" disabled="true" id="zijin" />
+                <span>元</span>
+                <button id="chongzhi" onclick="fmodify('+')" class="btnNew">我要充值</button>
+            </div>
+            <div class="input-div">
+                <span>提现金额：</span>
+                <input class="input-text" type="text" id="shuliang" />
+                <span>元</span>
+                <button id="tixian" onclick="fmodify('-')" class="btnNormal">提现</button>
+                <span id="sbmResult"></span>
+            </div>
+        </div>
+
+        <img class="SecondTitle" src="./images/step3-title2-3.png" />
+        <table class="table">
+            <tr>
+                <th>序号</th>
+                <th>股交中心</th>
+                <th>公司名称</th>
+                <th>持有股份</th>
+                <th>冻结数量</th>
+                <th>申请转让数量</th>
+                <th>操作</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>{{center0}}</td>
+                <td>{{company0}}<span style="display:none;" id="comp1">{{comp0}}</span></td>
+                <td>{{stock0}}</td>
+                <td>{{frozen0}}</td>
+                <td>{{transfered0}}</td>
+                <td><button id="transfer1" onclick="ftransfer('{{comp0}}')" class="btnNormal2">转让</button></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>{{center1}}</td>
+                <td>{{company1}}<span style="display:none;" id="comp2">{{comp1}}</span></td>
+                <td>{{stock1}}</td>
+                <td>{{frozen1}}</td>
+                <td>{{transfered1}}</td>
+                <td><button id="transfer2" onclick="ftransfer('{{comp1}}')" class="btnNormal2">转让</button></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>{{center2}}</td>
+                <td>{{company2}}<span style="display:none;" id="comp3">{{comp2}}</span></td>
+                <td>{{stock2}}</td>
+                <td>{{frozen2}}</td>
+                <td>{{transfered2}}</td>
+                <td><button id="transfer3" onclick="ftransfer('{{comp2}}')" class="btnNormal2">转让</button></td>
+            </tr>
+        </table>
+        <div class="section">
+            <button id="goback" class="btnNormal2">返回主页</button>
+        </div>
+    </div>
+    <div id="footer">
+        <img id="footer" src="./images/footer.jpg" />
+    </div>
+</body>
+
+</html>

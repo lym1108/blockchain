@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>闪链私人股权交易平台</title>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .section {
+      margin: 20px;
+    }
+    button {
+      padding: 5px 16px;
+      border-radius: 4px;
+    }
+    button#logon1 { background-color: yellow; }
+    button#logon2 { background-color: #98fb98; }
+    
+  </style>
+  <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+  <script src="./person.js"></script>
+
+ 
+
+</head>
+<body>
+<img src="pics/Step3.png" >
+  
+
+  <hr/>
+<div class="section">
+股东姓名:<span  id="gudong">{{person}}</span>
+  </div>
+
+<div class="section">
+账户余额:<span  id="zijin">{{zijin}}</span>
+<input type="button" id="chongzhi" value="我要充值" onclick="fmodify('+')">
+<input type="button" id="tixian" value="提现" onclick="fmodify('-')">
+数量:<input  id="shuliang"></input>
+<span id="sbmResult"></span>
+  </div>
+
+<table border="1" width="800">
+<tr>
+<td>序号</td><td>股交中心</td><td>公司</td><td>持股数量</td><td>冻结数量</td><td>申请转让数量</td><td>操作</td>
+</tr>
+<tr>
+<td>1</td><td><span id="center1">{{center0}}</td><td><span id="company1">{{company0}}<span style="display:none;" id="comp1">{{comp0}}</span></td><td><span id="stock1">{{stock0}}</td><td><span id="frozen1">{{frozen0}}</td><td><span id="transfered1">{{transfered0}}</td>
+<td><input type="button" id="transfer1" value="转让" onclick="ftransfer('{{comp0}}')"></td>
+</tr>
+<tr>
+<tr>
+<td>2</td><td><span id="center2">{{center1}}</td><td><span id="company2">{{company1}}<span style="display:none;" id="comp2">{{comp1}}</span></td><td><span id="stock2">{{stock1}}</td><td><span id="frozen2">{{frozen1}}</td><td><span id="transfered2">{{transfered1}}</td>
+<td><input type="button" id="transfer2" value="转让" onclick="ftransfer('{{comp1}}')"></td>
+</tr>
+<tr>
+<tr>
+<td>3</td><td><span id="center3">{{center2}}</td><td><span id="company3">{{company2}}<span style="display:none;" id="comp3">{{comp2}}</span></td><td><span id="stock3">{{stock2}}</td><td><span id="frozen3">{{frozen2}}</td><td><span id="transfered3">{{transfered2}}</td>
+<td><input type="button" id="transfer3" value="转让" onclick="ftransfer('{{comp2}}')"></td>
+</tr>
+</table>
+
+
+ <div class="section">
+      <button id="goback">返回主页</button>
+  </div>
+
+  
+
+</body>
+</html>
