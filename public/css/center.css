@@ -1,0 +1,94 @@
+body{
+    background: url("./images/Step1.png");
+    width: 1280px;
+    height: 1350px;
+}
+#logon{
+    background: #00aae3;
+    color: white;
+    border: 0px solid #CCCCCC;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-left: 217px;
+}
+#register{
+    
+    background: black;
+    color: white;
+    border: 0px solid #CCCCCC;
+    border-radius: 5px;
+    font-size: 14px;
+}
+#zhuanrang{
+
+     background: #0c0c39;
+    color: white;
+    border: 0px solid #CCCCCC;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-left: 10px;
+}
+#shourang{
+
+     background: #0c0c39;
+    color: white;
+    border: 0px solid #CCCCCC;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-left: 10px;
+}
+#zhuanrangGD{
+
+    background: #0c0c39;
+    color: white;
+    border: 0px solid #CCCCCC;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-left: 10px;
+}
+#goback{
+
+    background: #0c0c39;
+    color: white;
+    border: 0px solid #CCCCCC;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-left: 10px;
+}
+#logonResult{
+    display: block;
+    color: white;
+    float: left;
+    margin-left: 351px;
+}
+#btn{
+    margin-top: 18px;
+    margin-left: 356px;
+}
+#message{
+    margin-top: 0px;
+    margin-left: 356px;
+}
+#logonResult1{
+    display: block;
+    color: white;
+    float: left;
+}
+#logonResult2{
+    display: block;
+    color: white;
+    float: left;
+    margin-left: 42px;
+}
+#logonResult3{
+    display: block;
+    color: white;
+    float: left;
+    margin-left: 133px;
+}
+#logonResult4{
+    display: block;
+    color: white;
+    float: left;
+    margin-left: 71px;
+}
