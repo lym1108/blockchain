@@ -49,12 +49,12 @@
                 <span>元</span>
             </div>
             <div class="input-div">
-                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;转让理由：</span>
+                <span id="reason">转让理由：</span>
                 <textarea class="div-textare" id="liyou" name="liyou"></textarea>
             </div>
             <div id="btn">
                 <button id="goback" value="取消" class="btnNormal">取消</button>
-                <button id="regcompany" onclick="fapplyTransfer()" value="提交" class="btnBlue">提交</button>
+                <input id="regcompany" type="button" value="提交" onclick="fapplyTransfer()" class="btnBlue"/>
             </div>
         </form>
         <div id="message">

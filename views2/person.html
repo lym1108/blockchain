@@ -20,7 +20,7 @@
         <img class="SecondTitle" src="./images/step3-title2-1.png" />
         <div id="info-left">
             <div class="input-div">
-                <span class="text">&nbsp;&nbsp;&nbsp;&nbsp;姓名：</span>
+                <span id="name">姓名：</span>
                 <input class="input-text" type="text" value="{{person}}" disabled="true" />
             </div>
             <div class="input-div">
@@ -56,13 +56,13 @@
                 <span>账户余额：</span>
                 <input class="input-text" type="text" value="{{zijin}}" disabled="true" id="zijin" />
                 <span>元</span>
-                <button id="chongzhi" onclick="fmodify('+')" class="btnNew">我要充值</button>
+                <input type="button" id="chongzhi" value="我要充值" onclick="fmodify('+')" class="btnNew" />
             </div>
             <div class="input-div">
                 <span>提现金额：</span>
                 <input class="input-text" type="text" id="shuliang" />
                 <span>元</span>
-                <button id="tixian" onclick="fmodify('-')" class="btnNormal">提现</button>
+                <input type="button" id="tixian" value="提现" onclick="fmodify('-')" class="btnNormal" />
                 <span id="sbmResult"></span>
             </div>
         </div>
@@ -85,7 +85,7 @@
                 <td>{{stock0}}</td>
                 <td>{{frozen0}}</td>
                 <td>{{transfered0}}</td>
-                <td><button id="transfer1" onclick="ftransfer('{{comp0}}')" class="btnNormal2">转让</button></td>
+                <td><input type="button" id="transfer1" value="转让" onclick="ftransfer('{{comp0}}')" class="btnNormal2" /></td>
             </tr>
             <tr>
                 <td>2</td>
@@ -94,7 +94,7 @@
                 <td>{{stock1}}</td>
                 <td>{{frozen1}}</td>
                 <td>{{transfered1}}</td>
-                <td><button id="transfer2" onclick="ftransfer('{{comp1}}')" class="btnNormal2">转让</button></td>
+                <td><input type="button" id="transfer2" value="转让" onclick="ftransfer('{{comp1}}')" class="btnNormal2" /></td>
             </tr>
             <tr>
                 <td>3</td>
@@ -103,7 +103,7 @@
                 <td>{{stock2}}</td>
                 <td>{{frozen2}}</td>
                 <td>{{transfered2}}</td>
-                <td><button id="transfer3" onclick="ftransfer('{{comp2}}')" class="btnNormal2">转让</button></td>
+                <td><input type="button" id="transfer3" value="转让" onclick="ftransfer('{{comp2}}')" class="btnNormal2" /></td>
             </tr>
         </table>
         <div class="section">

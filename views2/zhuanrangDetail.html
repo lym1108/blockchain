@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>闪链私人股权交易平台</title>
+    <meta http-equiv="http-Context" charset="utf-8" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/zhuanrangDetail.css" />
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="./zhuanrangDetail.js"></script>
+</head>
+
+<body>
+    <div id="header">
+        <img id="logo" src="./images/logo3.jpg" />
+        <img id="person" src="./images/lzl1.jpg" />
+    </div>
+    <div id="mainbody">
+        <img class="FirstTitle" src="./images/step6-title1.png" />
+        <div id="info-left">
+            <div class="input-div">
+                <span class="text">申请人姓名:</span>
+                <input id="xingming" class="input-text" type="text" value="{{xingming}}" disabled="true" />
+            </div>
+            <div class="input-div">
+                <span class="text">申请人证件号码:</span>
+                <input id="zhengjianhao" class="input-text" type="text" value="{{zhengjianhao}}" disabled="true" />
+            </div>
+            <div class="input-div">
+                <span class="text">转让企业名称:</span>
+                <input id="qiye" class="input-text" type="text" value="{{qiye}}" disabled="true" />
+            </div>
+            <div class="input-div">
+                <span class="text">持有股份数量:</span>
+                <input id="stock" class="input-text" type="text" value="{{stock}}" disabled="true" />
+            </div>
+            <div class="input-div">
+                <span class="text">申请转让数量:</span>
+                <input id="shuliang" class="input-text" type="text" value="{{shuliang}}" disabled="true" />
+            </div>
+        </div>
+        <div id="info-right">
+            <div class="input-div">
+                <span class="text">冻结股份数量:</span>
+                <input id="frozen" class="input-text" type="text" value="{{frozen}}" disabled="true" />
+            </div>
+            <div class="input-div">
+                <span class="text">申请转让价格:</span>
+                <input id="jiage" class="input-text" type="text" value="{{jiage}}" disabled="true" />
+            </div>
+        </div>
+        <div class="input-div">
+            <span class="text">转让理由:</span>
+            <input id="liyou" class="input-text" type="text" value="{{liyou}}" disabled="true" />
+        </div>
+        <div id="input-div-shanlian">
+            <span class="text">是否发布至闪联:</span>
+            <div id="shanlian-radio">
+                <input type="radio" name="shanlian" value="Y"></input>
+                <span class="textStyle1">是</span>
+                <input type="radio" name="shanlian" value="N" checked="checked"></input>
+                <span class="textStyle1">否</span>
+            </div>
+        </div>
+        <div class="section" id="btn">
+            <input id="disapprove" type="button" value="驳回" onclick="changeStatus('R')" class="btnNormal">
+            <input id="submit" type="button" value="批准申请" onclick="changeStatus('A')" class="btnBlue">
+            <span id="sbmResult"></span>
+        </div>
+        <div class="section">
+            <button id="goback" class="btnNormal2">返回</button>
+        </div>
+    </div>
+    <div id="footer">
+        <img id="footer" src="./images/footer.jpg" />
+    </div>
+</body>
+
+</html>

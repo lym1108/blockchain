@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>闪链私人股权交易平台</title>
+    <meta http-equiv="http-Context" charset="utf-8" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/zhuanrangGDDetail.css" />
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="./zhuanrangGDDetail.js"></script>
+</head>
+
+<body>
+    <div id="header">
+        <img id="logo" src="./images/logo2.jpg" />
+        <img id="person" src="./images/zw2.jpg" />
+    </div>
+    <div id="mainbody">
+        <img class="FirstTitle" src="./images/step8-title1.png" />
+        <img class="SecondTitle" src="./images/step8-title2-1.png" />
+        <table class="table">
+            <tr>
+                <th>公司名称</th>
+                <th>受让股份数量</th>
+                <th>受让股份单价</th>
+                <th>总计</th>
+            </tr>
+            <tr>
+                <td><span id="company">{{company}}</span></td>
+                <td><span id="shuliang">{{shuliang}}</span></td>
+                <td><span id="jiage">{{jiage}}</span></td>
+                <td><span id="total">{{total}}</span></td>
+            </tr>
+        </table>
+        <img class="SecondTitle" src="./images/step8-title2-2.png" />
+            <div class="input-div">
+                <span class="red">*</span>
+                <span>申请受让数量:</span>
+                <input id="shuliang_app" name="shuliang_app" onkeyup="compute()" class="input-text" />
+                <span>股</span>
+            </div>
+            <div class="input-div">
+                <span id="shourang">受让总额:</span>
+                <input disabled="true" id="total_app" name="total_app" class="input-text" type="text" />
+                <span>元</span>
+            </div>
+            <div class="input-div">
+                <span id="yue-text">您的账户余额不足，请到<button id="personCenter">闪链个人中心</button>充值</span>
+            </div>
+            <div id="btn">
+                <button id="goback" value="取消" class="btnNormal">取消</button>
+				<input id="submit" type="button" value="提交" onclick="fsubmit()" class="btnBlue" />
+            </div>
+        <div id="message">
+            <span style="color:green;" id="sbmResult"></span>
+        </div>
+    </div>
+    <div id="footer">
+        <img id="footer" src="./images/footer.jpg" />
+    </div>
+</body>
+
+</html>

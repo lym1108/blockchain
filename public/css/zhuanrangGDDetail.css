@@ -1,0 +1,44 @@
+.input-div{
+    width: 60%;
+    margin: 20px auto;
+}
+#btn{
+    width: 20%;
+    margin: 10px auto;
+}
+#message{
+    width: 10%;
+    margin: 10px auto;
+}
+#liyou{
+    padding-top: 10px;
+}
+#reason{
+	display: block;
+    float: left;
+    line-height: 134px;
+    width: 135px;
+    text-align: right;
+}
+#shourang{
+    width: 123px;
+    display: block;
+    float: left;
+    line-height: 36px;
+    text-align: right;
+    margin-right: 5px;
+}
+#personCenter{
+    width: auto;
+    height: 16px;
+    background: white;
+    color: #3e8de5;
+    border: 0px solid #CCCCCC;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 0px 5px;
+}
+#yue-text{
+    font-size: 14px;
+    padding-left: 230px;
+}

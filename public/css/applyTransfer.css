@@ -13,3 +13,10 @@
 #liyou{
     padding-top: 10px;
 }
+#reason{
+	display: block;
+    float: left;
+    line-height: 134px;
+    width: 135px;
+    text-align: right;
+}
