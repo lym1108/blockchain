@@ -1,0 +1,66 @@
+.text{
+    width: 110px;
+	display: block;
+	font-size: 14px;
+	float: left;
+	text-align: right;
+	line-height: 36px;
+	margin-right: 5px;
+}
+.text2{
+    width: 88px;
+	display: block;
+	font-size: 14px;
+	float: left;
+	text-align: right;
+	line-height: 36px;
+	margin-right: 5px;
+}
+#info-left {
+	float: left;
+    margin-left: 12px;
+}
+#info-right {
+	float: left;
+    margin-left: 12px;
+}
+.input-div {
+	margin-top: 25px;
+}
+.input-div-reason{
+    margin-top: 25px;
+    margin-left: 12px;
+}
+.input-div-hide{
+	margin-top: 25px;
+    visibility: hidden;
+}
+#liyou{
+	width: 860px;
+}
+#input-div-shanlian{
+	margin-top: 10px;
+}
+#shanlian-radio{
+	display: inline-block;
+	margin-top: 10px;
+}
+.textStyle1{
+	font-size: 14px;
+}
+#btn{
+    width: 20%;
+    margin: 10px auto;
+}
+#sbmResult{
+	display: block;
+	margin-top: 5px;
+}
+#qiyedengji{
+    float: right;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+#div-goback{
+    clear: both;
+}

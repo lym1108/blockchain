@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>闪链私人股权交易平台</title>
+    <meta http-equiv="http-Context" charset="utf-8" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/shourangDetail.css" />
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="./shourangDetail.js"></script>
+</head>
+
+<body>
+    <div id="header">
+        <img id="logo" src="./images/logo3.jpg" />
+        <img id="person" src="./images/lzl1.jpg" />
+    </div>
+    <div id="mainbody">
+        <img class="FirstTitle" src="./images/step10-title1.png" />
+        <img class="SecondTitle" src="./images/step10-title2-1.png" />
+        <div id="info-left">
+            <div class="input-div">
+                <span class="text">转让人姓名:</span>
+                <input id="xingming1" class="input-text" type="text" value="{{xingming1}}" disabled="true" />
+            </div>
+            <div class="input-div">
+                <span class="text">转让企业名称:</span>
+                <input id="qiye" class="input-text" type="text" value="{{qiye}}" disabled="true" />
+            </div>
+            <div class="input-div">
+                <span class="text">持有股份数量:</span>
+                <input id="stock" class="input-text" type="text" value="{{stock}}" disabled="true" />
+            </div>
+            <div class="input-div">
+                <span class="text">申请转让数量:</span>
+                <input id="shuliang1" class="input-text" type="text" value="{{shuliang1}}" disabled="true" />
+            </div>
+        </div>
+        <div id="info-right">
+            <div class="input-div">
+                <span class="text">转让人证件号码:</span>
+                <input id="zhengjianhao1" class="input-text" type="text" value="{{zhengjianhao1}}" disabled="true" />
+            </div>
+            <div class="input-div-hide">
+                <span class="text">add:</span>
+                <input id="add" class="input-text" type="text" value="" disabled="true" />
+            </div>
+            <div class="input-div">
+                <span class="text">冻结股份数量:</span>
+                <input id="frozen" class="input-text" type="text" value="{{frozen}}" disabled="true" />
+            </div>
+            <div class="input-div">
+                <span class="text">申请转让价格:</span>
+                <input id="jiage" class="input-text" type="text" value="{{jiage}}" disabled="true" />
+            </div>
+        </div>
+        <div class="input-div-reason">
+            <span class="text">转让理由:</span>
+            <input id="liyou" class="input-text" type="text" value="{{liyou}}" disabled="true" />
+        </div>
+        <img class="SecondTitle" src="./images/step10-title2-2.png" />
+        <div id="info-left">
+            <div class="input-div">
+                <span class="text">受让方姓名:</span>
+                <input id="xingming2" class="input-text" type="text" value="{{xingming2}}" disabled="true" />
+            </div>
+            <div class="input-div">
+                <span class="text">申请受让数量:</span>
+                <input id="shuliang2" class="input-text" type="text" value="{{shuliang2}}" disabled="true" />
+            </div>
+            <div class="input-div">
+                <span class="text">受让总额:</span>
+                <input id="zonge" class="input-text" type="text" value="{{zonge}}" disabled="true" />
+            </div>
+        </div>
+        <div id="info-right">
+            <div class="input-div">
+                <span class="text">受让人证件号码:</span>
+                <input id="zhengjianhao2" class="input-text" type="text" value="{{zhengjianhao2}}" disabled="true" />
+            </div>
+            <div class="input-div-hide">
+                <span class="text">转让企业名称:</span>
+                <input id="qiye" class="input-text" type="text" value="{{qiye}}" disabled="true" />
+            </div>
+            <div class="input-div">
+                <span class="text">受让人余额:</span>
+                <input id="zijin" class="input-text" type="text" value="{{zijin}}" disabled="true" />
+            </div>
+        </div>
+        <div class="section" id="btn">
+            <input id="disapprove" type="button" value="驳回" onclick="changeStatus('R')" class="btnNormal" />
+            <input id="submit" type="button" value="批准申请" onclick="changeStatus('A')" class="btnBlue" />
+            <span id="sbmResult"></span>
+        </div>
+        <div class="section">
+            <button id="goback" class="btnNormal2">返回</button>
+        </div>
+    </div>
+    <div id="footer">
+        <img id="footer" src="./images/footer.jpg" />
+    </div>
+</body>
+
+</html>
