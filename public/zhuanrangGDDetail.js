@@ -19,7 +19,7 @@ return unescape(r[2]);
 return ""; 
 }
 function compute(){
-	document.getElementById("total_app").innerHTML = $("#shuliang_app").val() * $("#jiage").text();
+	document.getElementById("total_app").value = $("#shuliang_app").val() * $("#jiage").text();
 }
 function fsubmit(){
 	if($("#shuliang_app").val()=='')

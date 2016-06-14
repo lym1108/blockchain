@@ -25,7 +25,7 @@
 #sbmResult{
 	margin-left: 25px;
 }
-#name{
+.name{
 	display: block;
     width: 80px;
     float: left;

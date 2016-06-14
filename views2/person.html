@@ -20,7 +20,7 @@
         <img class="SecondTitle" src="./images/step3-title2-1.png" />
         <div id="info-left">
             <div class="input-div">
-                <span id="name">姓名：</span>
+                <span class="name">姓名：</span>
                 <input class="input-text" type="text" value="{{person}}" disabled="true" />
             </div>
             <div class="input-div">
@@ -56,12 +56,12 @@
                 <span>账户余额：</span>
                 <input class="input-text" type="text" value="{{zijin}}" disabled="true" id="zijin" />
                 <span>元</span>
-                <input type="button" id="chongzhi" value="我要充值" onclick="fmodify('+')" class="btnNew" />
             </div>
             <div class="input-div">
-                <span>提现金额：</span>
+                <span class="name">金额：</span>
                 <input class="input-text" type="text" id="shuliang" />
                 <span>元</span>
+                <input type="button" id="chongzhi" value="我要充值" onclick="fmodify('+')" class="btnNew" />
                 <input type="button" id="tixian" value="提现" onclick="fmodify('-')" class="btnNormal" />
                 <span id="sbmResult"></span>
             </div>
