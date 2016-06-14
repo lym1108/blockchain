@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>闪链私人股权交易平台</title>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .section {
+      margin: 20px;
+    }
+    button {
+      padding: 5px 16px;
+      border-radius: 4px;
+    }
+    button#logon1 { background-color: yellow; }
+    button#logon2 { background-color: #98fb98; }
+    
+  </style>
+  <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+  <script src="./zhiya.js"></script>
+
+ 
+
+</head>
+<body>
+<img src="pics/Step12.png" >
+  
+
+<form class="form" method="post" >
+  <hr/>
+ <div class="section">相关人持有股份信息</div>
+公司名称:<input id="company"  name="company">
+<input id="showComp" type="button" value="显示" onclick="fshowComp()">
+<span id="result0"></span>
+持有人:<span id="name0"></span>
+股份数量:<span id="stock"></span>
+冻结数量:<span id="frozen"></span>
+  <hr/>
+ <div class="section">质押方冻结信息 </div>
+address:<input id="address1" name="address1">
+<input id="show1" type="button" value="显示" onclick="fshow1()">
+<span id="result1"></span>
+姓名:<span id="name1"></span>
+证件号码:<span id="zhengjianhao1"></span>
+手机号码:<span id="shoujihao1"></span>
+
+冻结数量:<input id="tofreeze"  name="tofreeze">
+冻结类型:<input id="freezeType"  name="freezeType">
+到期日:<input  id="date"  name="date">
+质押理由:<input id="liyou"  name="liyou">
+  <hr/>
+ <div class="section">受押方资金信息 </div>
+address:<input id="address2"  name="address2">
+<input id="show2" type="button" value="显示" onclick="fshow2()">
+<span id="result2"></span>
+姓名:<span id="name2"></span>
+证件号码:<span id="zhengjianhao2"></span>
+手机号码:<span id="shoujihao2"></span>
+账户余额:<span id="money"></span>
+
+ <hr/>
+ <div class="section">
+<input id="submit" type="button" value="确认冻结" onclick="fsubmit()">
+<span id="result4"></span>
+<input id="cancel" type="button" value="取消" onclick="fcancel()">
+ </div>
+
+</form>
+
+  
+
+  
+
+</body>
+</html>

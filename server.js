@@ -232,6 +232,85 @@ app.get('/regPerson', function(req, res){
 	res.send("已提交");     
 });
 
+
+//质押
+app.get('/zhiya', function(req, res){
+    res.render('zhiya');
+});
+//由填入的地址显示质押方信息
+app.post('/showPerson1', function(req, res){
+	var addrCenter = req.query.addr || '';
+	var addrPerson = req.body.address1  || '';
+	var person2 = req.body.address2  || '';
+	if(addrPerson==person2)
+		return res.send({result:"质押方与受押方不能相同",name:"",zhengjianhao:"",shoujihao:""});
+   	connection.query('select * from person_info where addr = ?',[addrPerson],function(err,result){
+		if(err){
+		     console.log('[error]select:',err.message);
+		     return ;
+		}
+		if(result.length!=0)
+			res.send({result:"",name:result[0].name,zhengjianhao:result[0].zhengjian,shoujihao:result[0].shouji});
+		else
+			res.send({result:"非用户地址",name:"",zhengjianhao:"",shoujihao:""});
+	});
+});
+//由填入的地址显示受押方信息
+app.post('/showPerson2', function(req, res){
+	var addrCenter = req.query.addr || '';
+	var addrPerson = req.body.address2  || '';
+	var person1 = req.body.address1  || '';
+	if(person1==addrPerson)
+		return res.send({result:"质押方与受押方不能相同",name:"",zhengjianhao:"",shoujihao:"",money:""});
+   	connection.query('select * from person_info where addr = ?',[addrPerson],function(err,result){
+		if(err){
+		     console.log('[error]select:',err.message);
+		     return ;
+		}
+		if(result.length!=0)
+			res.send({result:"",name:result[0].name,zhengjianhao:result[0].zhengjian,shoujihao:result[0].shouji,money:platform.getFunds.call(addrPerson)});
+		else
+			res.send({result:"非用户地址",name:"",zhengjianhao:"",shoujihao:"",money:""});
+	});
+});
+//由填入的公司名称和质押方显示公司和持股信息
+app.post('/showComp', function(req, res){
+	var addrCenter = req.query.addr || '';
+	var addrPerson = req.body.address1  || '';
+	var quancheng = req.body.company  || '';
+	connection.query('select * from person_info where addr = ?',[addrPerson],function(err,result){
+		if(err){
+		     console.log('[error]select:',err.message);
+		     return ;
+		}
+		if(result.length==0)
+		{	
+			return res.send({result:"用户地址不合法"});
+		}
+		else
+		{
+			var namePerson = result[0].name ;
+		   	connection.query('select * from company_info where quancheng = ?',[quancheng],function(err,result){
+				if(err){
+				     console.log('[error]select:',err.message);
+				     return ;
+				}
+				if(result.length!=0)
+				{
+					var balance = platform.getStock.call(addrCenter,result[0].addr,addrPerson);
+					res.send({result:"",stock:balance[0],frozen:balance[1],name:namePerson});
+				}
+				else
+				{
+					res.send({result:"公司名称不存在",stock:"",frozen:"",name:""});
+				}
+			});
+		}
+	});
+});
+//确认冻结
+app.post('/freeze', function(req, res){
+});
 //***********************************************************股交中心************************************************
 
 

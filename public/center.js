@@ -35,6 +35,13 @@ window.onload = function() {
 		else
 			window.location.href="/zhuanrangGD?addr="+GetQueryString("addr");
 	});
+
+	$("#zhiya").click(function() {
+		if(GetQueryString("addr")=="")
+			$("#logonResult5").html("请先登录");
+		else
+			window.location.href="/zhiya?addr="+GetQueryString("addr");
+	});
 };
 
 function GetQueryString(name)
