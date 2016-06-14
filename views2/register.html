@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>闪链私人股权交易平台</title>
+    <meta http-equiv="http-Context" charset="utf-8" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/register.css" />
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="./register.js"></script>
+</head>
+
+<body>
+    <div id="header">
+        <img id="logo" src="./images/logo2.jpg" />
+        <img id="person" src="./images/lzl1.jpg" />
+    </div>
+    <div id="mainbody">
+        <img class="FirstTitle" src="./images/step2-title1.png" />
+        <img class="SecondTitle" src="./images/step2-title2-1.png" />
+        <form class="form" method="post">
+            <div id="info-left">
+                <div class="input-div">
+                    <span class="text">公司全称:</span>
+                    <input id="quancheng" name="quancheng" class="input-text" type="text" value="链舞(深圳)科技股份有限公司" />
+                </div>
+                <div class="input-div">
+                    <span class="text">英文全称:</span>
+                    <input id="qiye" class="input-text" type="text" value="Lianwu ShenZhen Technology Co.,Ltd." />
+                </div>
+                <div class="input-div">
+                    <span class="text">注册地址:</span>
+                    <input id="stock" class="input-text" type="text" value="广东深深圳市福田区中心城隍庭广场" />
+                </div>
+                <div class="input-div">
+                    <span class="text">行业类别:</span>
+                    <input class="input-text" type="text" placeholder="请填写" />
+                </div>
+                <div class="input-div">
+                    <span class="text">企业注册号:</span>
+                    <input class="input-text" type="text" placeholder="请填写" />
+                </div>
+                <div class="input-div">
+                    <span class="text">法定代表人:</span>
+                    <input class="input-text" type="text" placeholder="请填写" />
+                </div>
+                <div class="input-div">
+                    <span class="text">每股面值:</span>
+                    <input class="input-text" type="text" placeholder="请填写" />
+                </div>
+                <div class="input-div">
+                    <span class="text">公司成立时间:</span>
+                    <input class="input-text" type="text" placeholder="请填写" />
+                </div>
+            </div>
+            <div id="info-right">
+                <div class="input-div">
+                    <span class="text">公司简称:</span>
+                    <input id="xingming1" class="input-text" type="text" value="链舞科技" />
+                </div>
+                <div class="input-div-hide">
+                    <span class="text">英文全称:</span>
+                    <input id="qiye" class="input-text" type="text" value="Lianwu ShenZhen Technology Co.,Ltd." />
+                </div>
+                <div class="input-div-hide">
+                    <span class="text">注册地址:</span>
+                    <input id="stock" class="input-text" type="text" value="广东深深圳市福田区中心城隍庭广场" />
+                </div>
+                <div class="input-div">
+                    <span class="text">行业代码:</span>
+                    <input class="input-text" type="text" placeholder="请填写" />
+                </div>
+                <div class="input-div-hide">
+                    <span class="text">企业注册号:</span>
+                    <input class="input-text" type="text" placeholder="请填写" />
+                </div>
+                <div class="input-div">
+                    <span class="text">身份证:</span>
+                    <input class="input-text" type="text" placeholder="请填写" />
+                </div>
+                <div class="input-div">
+                    <span class="text">总股本数量:</span>
+                    <input class="input-text" type="text" placeholder="请填写" />
+                </div>
+                <div class="input-div-hide">
+                    <span class="text">公司成立时间:</span>
+                    <input class="input-text" type="text" placeholder="请填写" />
+                </div>
+            </div>
+            <div id="qiyedengji">
+                <span style="color:green;" id="sbmCompResult"></span>
+                <span style="display:none;" id="compAddr"></span>
+                <input id="regcompany" type="button" value="企业登记" onclick="fregcompany()" class="btnNormal2" />
+            </div>
+        </form>
+        <img class="SecondTitle" src="./images/step2-title2-2.png" />
+        <img class="ThreeTitle" src="./images/step2-title3-1.png" />
+        <div id="info-left">
+            <div class="input-div">
+                <span class="text2">股东名称:</span>
+                <input class="input-text" type="text" value="黄晓明" />
+            </div>
+            <div class="input-div">
+                <span class="text2">联系地址:</span>
+                <input class="input-text" type="text" value="南山区科技园" />
+            </div>
+            <div class="input-div">
+                <span class="text2">持股数量:</span>
+                <input class="input-text" type="text" value="30000000" />
+            </div>
+        </div>
+        <div id="info-right">
+            <div class="input-div">
+                <span class="text2">证件号码:</span>
+                <input class="input-text" type="text" value="210105195012211234" />
+            </div>
+            <div class="input-div">
+                <span class="text2">手机号码:</span>
+                <input class="input-text" type="text" value="13812345678" />
+            </div>
+            <div class="input-div-hide">
+                <span class="text2">注册地址:</span>
+                <input class="input-text" type="text" value="链舞(深圳)科技股份有限公司" />
+            </div>
+        </div>
+        <div id="qiyedengji">
+            <span style="color:green;" id="sbmPersonResult"></span>
+            <input id="regperson" type="button" value="股东登记" onclick="fregperson()" class="btnNormal2" />
+        </div>
+        <div id="div-goback">
+            <button id="goback"  class="btnNormal2">返回主页</button>
+        </div>
+    </div>
+    <div id="footer">
+        <img id="footer" src="./images/footer.jpg" />
+    </div>
+</body>
+
+</html>
