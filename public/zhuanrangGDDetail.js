@@ -31,7 +31,7 @@ function fsubmit(){
 				url:'/sbmShourang?addr='+GetQueryString("addr")+"&app="+GetQueryString("app"),
 				type:"post",
 				dataType : "text",
-				data:{shuliang_app:$("#shuliang_app").val(),total_app:$("#total_app").text()},
+				data:{shuliang_app:$("#shuliang_app").val(),total_app:$("#total_app").val()},
 				error:function(XMLHttpRequest,textStatus,errorThrown){
 					alert(XMLHttpRequest.status);
 					alert(XMLHttpRequest.readyState);

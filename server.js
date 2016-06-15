@@ -639,7 +639,7 @@ app.get('/zhuanrangGD', function(req, res){
 			passdata['center'+i] = result[i].name;
 			passdata['company'+i]=result[i].quancheng;
 			passdata['shuliang'+i] = result[i].shuliang;
-			passdata['jiage'+i] = result[i].shuliang;			
+			passdata['jiage'+i] = result[i].jiage;			
 		}
 		res.render('zhuanrangGD',passdata);
    	 });
