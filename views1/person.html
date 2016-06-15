@@ -48,17 +48,22 @@
 </tr>
 <tr>
 <td>1</td><td><span id="center1">{{center0}}</td><td><span id="company1">{{company0}}<span style="display:none;" id="comp1">{{comp0}}</span></td><td><span id="stock1">{{stock0}}</td><td><span id="frozen1">{{frozen0}}</td><td><span id="transfered1">{{transfered0}}</td>
-<td><input type="button" id="transfer1" value="转让" onclick="ftransfer('{{comp0}}')"></td>
+<td>
+<input type="button" id="transfer1" value="转让" onclick="ftransfer('{{comp0}}')">
+<input type="button" id="unfreeze1" value="申请解冻" onclick="funfreeze('{{comp0}}','{{frozen0}}')">
+</td>
 </tr>
 <tr>
 <tr>
 <td>2</td><td><span id="center2">{{center1}}</td><td><span id="company2">{{company1}}<span style="display:none;" id="comp2">{{comp1}}</span></td><td><span id="stock2">{{stock1}}</td><td><span id="frozen2">{{frozen1}}</td><td><span id="transfered2">{{transfered1}}</td>
-<td><input type="button" id="transfer2" value="转让" onclick="ftransfer('{{comp1}}')"></td>
+<td><input type="button" id="transfer2" value="转让" onclick="ftransfer('{{comp1}}')">
+<input type="button" id="unfreeze2" value="申请解冻" onclick="funfreeze('{{comp1}}','{{frozen1}}')"></td>
 </tr>
 <tr>
 <tr>
 <td>3</td><td><span id="center3">{{center2}}</td><td><span id="company3">{{company2}}<span style="display:none;" id="comp3">{{comp2}}</span></td><td><span id="stock3">{{stock2}}</td><td><span id="frozen3">{{frozen2}}</td><td><span id="transfered3">{{transfered2}}</td>
-<td><input type="button" id="transfer3" value="转让" onclick="ftransfer('{{comp2}}')"></td>
+<td><input type="button" id="transfer3" value="转让" onclick="ftransfer('{{comp2}}')">
+<input type="button" id="unfreeze3" value="申请解冻" onclick="funfreeze('{{comp2}}','{{frozen2}}')"></td>
 </tr>
 </table>
 

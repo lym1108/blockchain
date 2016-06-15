@@ -81,6 +81,7 @@ function fshowComp(){
 				$(stock).html(data.stock);
 				$(frozen).html(data.frozen);
 				$(result0).html(data.result);
+				$(compId).html(data.compId);
 			}
 		});
 }
@@ -96,9 +97,22 @@ function fsubmit(){
 			$(result4).html('请填入受押方地址');
 			return;
 		}
+		else if($("#tofreeze").val()==''){
+			$(result4).html('请填入冻结数量');
+			return;
+		}
+		else if($("#deadline").val()==''){
+			$(result4).html('请填入到期日');
+			return;
+		}
+		else if($("#pay").val()==''){
+			$(result4).html('请填入转帐金额');
+			return;
+		}
 		$.ajax({
-			url:'/freeze?addr='+GetQueryString("addr"),
+			url:'/freeze?addr='+GetQueryString("addr")+'&compId='+$("#compId").text(),
 			type:"post",
+			dataType : "text",
 			data:$('form').serialize(),
 			error:function(XMLHttpRequest,textStatus,errorThrown){
 				alert(XMLHttpRequest.status);

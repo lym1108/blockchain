@@ -23,13 +23,21 @@ function ftransfer(compId){
 	if(compId!='')
 	window.location.href="/applyTransfer?addr="+GetQueryString("addr")+"&compId="+compId;
 }
+function funfreeze(compId,frozen){
+	if(frozen!=0 && compId!='')
+	window.location.href="/applyUnfreeze?addr="+GetQueryString("addr")+"&compId="+compId;
+}
+
 
 function fmodify(type){
 	var number = $("#shuliang").val();
 	if(type =='-')
 		number = -1*number ;
 	if(number==0)
+	{
 		$(sbmResult).html("请填入充值或提现数量");
+		return;
+	}
 	 $.ajax({
 		url:'/money?addr='+GetQueryString("addr")+"&app="+GetQueryString("app"),
 		type:"post",

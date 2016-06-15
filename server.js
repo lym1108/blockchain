@@ -40,7 +40,7 @@ connection.connect(function(err){
 
 
 //全局变量
-var platform = web3.eth.contract([{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"money","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[],"name":"Center","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"shareholder","type":"address"}],"name":"getStock","outputs":[{"name":"all","type":"uint256"},{"name":"frozen","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[{"name":"sender","type":"address"},{"name":"receiver","type":"address"},{"name":"amount","type":"uint256"}],"name":"fundsTx","outputs":[{"name":"result","type":"bool"}],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"person1","type":"address"},{"name":"person2","type":"address"},{"name":"amount","type":"uint256"},{"name":"price","type":"uint256"}],"name":"transfer","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"sender","type":"address"},{"name":"receiver","type":"address"},{"name":"amount","type":"uint256"}],"name":"stockTx","outputs":[{"name":"result","type":"bool"}],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"shareholder","type":"address"},{"name":"amount","type":"uint256"}],"name":"register","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"person","type":"address"},{"name":"amount","type":"uint256"}],"name":"modify","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"uint256"},{"name":"","type":"address"}],"name":"balances","outputs":[{"name":"all","type":"uint256"},{"name":"frozen","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"shareholder","type":"address"},{"name":"amount","type":"uint256"}],"name":"freeze","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"shareholder","type":"address"},{"name":"amount","type":"uint256"}],"name":"unfreeze","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"person","type":"address"}],"name":"getFunds","outputs":[{"name":"amount","type":"uint256"}],"type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"info","type":"string"}],"name":"writelog","type":"event"}]).at("0x1d2e4ab7aa01569446b9c8da78a25d47ff00f24d") ;
+var platform = web3.eth.contract([{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"money","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[],"name":"Center","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"person1","type":"address"},{"name":"person2","type":"address"},{"name":"stock","type":"uint256"},{"name":"money","type":"uint256"}],"name":"jieya","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"person1","type":"address"},{"name":"person2","type":"address"},{"name":"stock","type":"uint256"},{"name":"money","type":"uint256"}],"name":"zhiya","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"shareholder","type":"address"}],"name":"getStock","outputs":[{"name":"all","type":"uint256"},{"name":"frozen","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[{"name":"sender","type":"address"},{"name":"receiver","type":"address"},{"name":"amount","type":"uint256"}],"name":"fundsTx","outputs":[{"name":"result","type":"bool"}],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"person1","type":"address"},{"name":"person2","type":"address"},{"name":"amount","type":"uint256"},{"name":"price","type":"uint256"}],"name":"transfer","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"sender","type":"address"},{"name":"receiver","type":"address"},{"name":"amount","type":"uint256"}],"name":"stockTx","outputs":[{"name":"result","type":"bool"}],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"shareholder","type":"address"},{"name":"amount","type":"uint256"}],"name":"register","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"person","type":"address"},{"name":"amount","type":"uint256"}],"name":"modify","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"uint256"},{"name":"","type":"address"}],"name":"balances","outputs":[{"name":"all","type":"uint256"},{"name":"frozen","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"shareholder","type":"address"},{"name":"amount","type":"uint256"}],"name":"freeze","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"shareholder","type":"address"},{"name":"amount","type":"uint256"}],"name":"unfreeze","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"person","type":"address"}],"name":"getFunds","outputs":[{"name":"amount","type":"uint256"}],"type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"info","type":"string"}],"name":"writelog","type":"event"}]).at("0xb6e197aae39fb3be56dfadb5bc65a699eb19d14b") ;
 
 platform.writelog().watch(function(error,result){
 	if(error)
@@ -162,6 +162,48 @@ app.post('/sbmApplyTransfer', function(req, res){
 		console.log('股权转让申请提交成功');res.send({});
 	});  	
 });
+
+//点击冻结股份,至个人解冻申请页面
+app.get('/applyUnfreeze', function(req, res){
+	var addrPerson =  req.query.addr  || '';
+	var company =  req.query.compId || '';
+	var passdata = {};
+
+	connection.query('select * from person_info, company_info,zhiya,center_company where zhiya.addrZhiya=person_info.addr and zhiya.company=company_info.addr and  company_info.addr=center_company.addrCompany   and zhiya.status=? and zhiya.addrZhiya=? and zhiya.company=? ',['N',addrPerson,company],function(err,result){
+		if(err){
+			console.log('[error]select:',err.message);
+			return ;
+		}
+		if(result.length==0)
+		{
+			console.log('[error]查询不到冻结合约信息');
+			return ;
+		}
+		passdata['company']=result[0].quancheng;
+		passdata['person']=result[0].name;
+		passdata['zhengjian']=result[0].zhengjian;
+		passdata['shouji']=result[0].zhouji;
+		passdata['freezeType']=result[0].type;
+		passdata['deadline']=result[0].deadline;
+		passdata['liyou']=result[0].liyou;
+		var balance = platform.getStock.call(result[0].addrCenter,company,addrPerson);
+		passdata['stock']=balance[0];	
+		passdata['frozen1']=balance[1];
+		var dateNow = new Date();
+		passdata['timeleft']=parseInt((result[0].deadline.getTime()-dateNow.getTime())/1000);
+		passdata['frozen2']=result[0].shuliang;
+		res.render('applyUnfreeze',passdata);
+	});
+	
+});
+
+
+
+
+
+
+
+
 
 //托管登记
 app.get('/register', function(req, res){
@@ -298,11 +340,11 @@ app.post('/showComp', function(req, res){
 				if(result.length!=0)
 				{
 					var balance = platform.getStock.call(addrCenter,result[0].addr,addrPerson);
-					res.send({result:"",stock:balance[0],frozen:balance[1],name:namePerson});
+					res.send({result:"",stock:balance[0],frozen:balance[1],name:namePerson,compId:result[0].addr});
 				}
 				else
 				{
-					res.send({result:"公司名称不存在",stock:"",frozen:"",name:""});
+					res.send({result:"公司名称不存在",stock:"",frozen:"",name:"",compId:""});
 				}
 			});
 		}
@@ -310,6 +352,33 @@ app.post('/showComp', function(req, res){
 });
 //确认冻结
 app.post('/freeze', function(req, res){
+	var addrCenter = req.query.addr || '';
+	var addrPerson1 = req.body.address1  || '';
+	var addrPerson2 = req.body.address2  || '';
+	var addrComp = req.query.compId || '';
+	var money = platform.getFunds.call(addrPerson2);
+	var stock = platform.getStock.call(addrCenter,addrComp,addrPerson1);
+	var tofreeze = req.body.tofreeze  ;
+	var pay = req.body.pay ;
+	if(pay>=money)
+		return res.send("受押方金额不足,请充值");
+	if(tofreeze>=stock[0]-stock[1])
+		return res.send("质押方可冻结股份不足");
+	var deadline = req.body.deadline  ;
+	var freezeType = req.body.freezeType  ;
+	var liyou = req.body.liyou  ;
+
+	var txhash = platform.zhiya.sendTransaction(addrCenter,addrComp,addrPerson1,addrPerson2,tofreeze,pay,{from: web3.eth.accounts[0]}) ;
+	console.log('质押成交txhash:'+txhash);
+	connection.query( 'insert into zhiya(addrZhiya,addrShouya,company,shuliang,jiage,deadline,type,liyou,platform,status,txhash1,txhash2)values(?,?,?,?,?,?,?,?,?,?,?,?)',[addrPerson1,addrPerson2,addrComp,tofreeze,pay,deadline,freezeType,liyou,'N','N',txhash,''],function(err,result){
+		if(err){
+			console.log('[error]insert-',err.message);
+			return res.send("提交失败");
+		}
+		res.end();
+	});
+
+
 });
 //***********************************************************股交中心************************************************
 

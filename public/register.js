@@ -1,6 +1,6 @@
 window.onload = function() {
         $("#goback").click(function() {
-				  window.location.href="/?addr="+GetQueryString("addr");
+				  window.location.href="/center?addr="+GetQueryString("addr");
 	});
 };
 

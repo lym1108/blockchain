@@ -35,6 +35,7 @@
 公司名称:<input id="company"  name="company">
 <input id="showComp" type="button" value="显示" onclick="fshowComp()">
 <span id="result0"></span>
+<span style="display:none;" id="compId"></span>
 持有人:<span id="name0"></span>
 股份数量:<span id="stock"></span>
 冻结数量:<span id="frozen"></span>
@@ -49,7 +50,7 @@ address:<input id="address1" name="address1">
 
 冻结数量:<input id="tofreeze"  name="tofreeze">
 冻结类型:<input id="freezeType"  name="freezeType">
-到期日:<input  id="date"  name="date">
+到期日:<input  id="deadline"  name="deadline">
 质押理由:<input id="liyou"  name="liyou">
   <hr/>
  <div class="section">受押方资金信息 </div>
@@ -60,7 +61,7 @@ address:<input id="address2"  name="address2">
 证件号码:<span id="zhengjianhao2"></span>
 手机号码:<span id="shoujihao2"></span>
 账户余额:<span id="money"></span>
-
+转帐金额:<input id="pay" name="pay">
  <hr/>
  <div class="section">
 <input id="submit" type="button" value="确认冻结" onclick="fsubmit()">

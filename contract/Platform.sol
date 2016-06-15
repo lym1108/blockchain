@@ -102,6 +102,22 @@ contract Platform {
  
      writelog("success:transfer");
   }
+  
+  //质押
+  function zhiya(address center,uint company,address person1, address person2, uint stock,uint money) public
+  {
+      freeze(center,company,person1, stock);
+      fundsTx(person2, person1,money) ;
+      writelog("success:zhiya");
+  }
+  
+  //解押
+  function jieya(address center,uint company,address person1, address person2, uint stock,uint money) public
+  {
+      unfreeze(center,company,person1, stock);
+      fundsTx(person1, person2,money) ;
+      writelog("success:jieya");
+  }
 
 }
 
