@@ -61,6 +61,39 @@ platform.writelog().watch(function(error,result){
 	}
 });
 
+//每隔2小时检查zhiya表中有没有到期的质押
+var interval = 6000;//1000*60*60*2 ;
+setInterval(function(){
+	var today = new Date();
+console.log(today);
+	connection.query('select * from zhiya,center_company  where center_company.addrCompany=zhiya.company and deadline<=? and status = ?',[today,'Y'],function(err,result){
+		if(err){
+		     console.log('[select error]-到期质押轮询',err.message);
+		     return ;
+		}
+		if(result.length==0)
+			console.log('没有到期质押');
+		else
+		{
+			for(var i=0;i<result.length;i++)
+			{
+				var zhiyaId=result[i].id ;
+				//var txhash = platform.jieya.sendTransaction(result[i].addrCenter,result[i].company,result[i].addrZhiya,result[i].addrShouya,result[i].shuliang,result[i].jiage,{from: web3.eth.accounts[0]}) ;
+				var txhash = '';
+				connection.query('update zhiya set status = ?,txhash2=? where id = ?',['Y',txhash,zhiyaId],function(err,result){
+					if(err){
+					     console.log('[update error]-质押信息表状态更新错误',err.message);
+					     return ;
+					}				
+				});
+				console.log('质押编号',zhiyaId,'已到期');
+			}
+		}
+		console.log('到期质押轮询:',today);
+	});
+
+},interval);
+
 
 //主页
 app.get('/', function(req, res){
@@ -94,7 +127,7 @@ app.get('/toperson', function(req, res){
 			return res.send("非股东用户,无权限进入");
 		else
 			res.end();
-});
+	});
 });
 //显示查询出的持股数量
 app.get('/person', function(req, res){
