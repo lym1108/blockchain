@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>闪链私人股权交易平台</title>
+    <meta http-equiv="http-Context" charset="utf-8" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/applyUnfreeze.css" />
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="./applyUnfreeze.js"></script>
+</head>
+
+<body>
+    <div id="header">
+        <img id="logo" src="./images/logo1.jpg" />
+        <img id="person" src="./images/hxm1.jpg" />
+    </div>
+    <div id="mainbody">
+        <img class="FirstTitle" src="./images/step14-title1.png" />
+        <img class="SecondTitle" src="./images/step14-title2-1.png" />
+        <table class="table">
+            <tr>
+                <th>公司名称</th>
+                <th>持有人</th>
+                <th>股份数量</th>
+                <th>冻结数量</th>
+            </tr>
+            <tr>
+                <td><span id="company">{{company}}</span></td>
+                <td><span id="person">{{person}}</span></td>
+                <td><span id="stock">{{stock}}</span></td>
+                <td><span id="frozen1">{{frozen1}}</span></td>
+            </tr>
+        </table>
+
+        <img class="SecondTitle" src="./images/step14-title2-2.png" />
+        <span style="display:none;" id="timeleft">{{timeleft}}</span>
+        
+        <div class="input-div-right">
+            <span>距离合约到期还有:</span>
+            <span id="timeleft2" ></span>
+        </div>
+
+        <div id="info-left">
+            <div class="input-div">
+                <span class="text">姓名:</span>
+                <span id="name" class="span-text">{{person}}</span>
+            </div>
+            <div class="input-div">
+                <span class="text">证件号码:</span>
+                <span id="zhengjian" class="span-text">{{zhengjian}}</span>
+            </div>
+            <div class="input-div">
+                <span class="text">已冻结数量:</span>
+                <span id="frozen2" class="span-text">{{frozen2}}</span>
+            </div>
+            <div class="input-div">
+                <span class="text">到期日:</span>
+                <span id="deadline" class="span-text">{{deadline}}</span>
+            </div>
+        </div>
+        <div id="info-right">
+            <div class="input-div-hide">
+                <span class="text">距离合约有:</span>
+                <span id="timeleft2" class="span-text"></span>
+            </div>
+            <div class="input-div">
+                <span class="text">手机号码:</span>
+                <span id="shouji" class="span-text">{{shouji}}</span>
+            </div>
+            <div class="input-div">
+                <span class="text">冻结类型:</span>
+                <span id="freezeType" class="span-text">{{freezeType}}</span>
+            </div>
+            <div class="input-div-hide">
+                <span class="text">申请转让价格:</span>
+                <input id="jiage" class="input-text" type="text" value="{{jiage}}" disabled="true" />
+            </div>
+        </div>
+        <div class="input-div-reason">
+            <span class="text">质押理由:</span>
+            <span id="liyou" class="span-text">{{liyou}}</span>
+        </div>
+
+        <div class="section" id="btn">
+            <input id="goback" type="button" value="返回" onclick="fgoback()" class="btnNormal" />
+        </div>
+    </div>
+    <div id="footer">
+        <img id="footer" src="./images/footer.jpg" />
+    </div>
+</body>
+
+</html>

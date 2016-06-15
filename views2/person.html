@@ -85,7 +85,10 @@
                 <td>{{stock0}}</td>
                 <td>{{frozen0}}</td>
                 <td>{{transfered0}}</td>
-                <td><input type="button" id="transfer1" value="转让" onclick="ftransfer('{{comp0}}')" class="btnNormal2" /></td>
+                <td>
+                    <input type="button" id="transfer1" value="转让" onclick="ftransfer('{{comp0}}')" class="btnNormal2" />
+                    <input type="button" id="unfreeze1" value="申请解冻" onclick="funfreeze('{{comp0}}','{{frozen0}}')" class="btnNormal2"/>
+                </td>
             </tr>
             <tr>
                 <td>2</td>
@@ -94,7 +97,10 @@
                 <td>{{stock1}}</td>
                 <td>{{frozen1}}</td>
                 <td>{{transfered1}}</td>
-                <td><input type="button" id="transfer2" value="转让" onclick="ftransfer('{{comp1}}')" class="btnNormal2" /></td>
+                <td>
+                    <input type="button" id="transfer2" value="转让" onclick="ftransfer('{{comp1}}')" class="btnNormal2" />
+                    <input type="button" id="unfreeze2" value="申请解冻" onclick="funfreeze('{{comp1}}','{{frozen1}}')" class="btnNormal2" />
+                </td>
             </tr>
             <tr>
                 <td>3</td>
@@ -103,7 +109,10 @@
                 <td>{{stock2}}</td>
                 <td>{{frozen2}}</td>
                 <td>{{transfered2}}</td>
-                <td><input type="button" id="transfer3" value="转让" onclick="ftransfer('{{comp2}}')" class="btnNormal2" /></td>
+                <td>
+                    <input type="button" id="transfer3" value="转让" onclick="ftransfer('{{comp2}}')" class="btnNormal2" />
+                    <input type="button" id="unfreeze3" value="申请解冻" onclick="funfreeze('{{comp2}}','{{frozen2}}')" class="btnNormal2" />
+                </td>
             </tr>
         </table>
         <div class="section">

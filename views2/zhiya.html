@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>闪链私人股权交易平台</title>
+    <meta http-equiv="http-Context" charset="utf-8" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/zhiya.css" />
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="./zhiya.js"></script>
+</head>
+
+<body>
+    <div id="header">
+        <img id="logo" src="./images/logo3.jpg" />
+        <img id="person" src="./images/lzl1.jpg" />
+    </div>
+    <div id="mainbody">
+        <img class="FirstTitle" src="./images/step12-title1.png" />
+        <img class="SecondTitle" src="./images/step12-title2-1.png" />
+        <div class="input-div">
+            <span class="text">公司名称:</span>
+            <input id="company" name="company" class="input-text" type="text" />
+            <input id="showComp" type="button" value="显示" onclick="fshowComp()" class="btnNormal" />
+            <span id="result0"></span>
+            <span style="display:none;" id="compId"></span>
+        </div>
+        <table class="table">
+            <tr>
+                <th>持有人</th>
+                <th>股份数量</th>
+                <th>冻结数量</th>
+            </tr>
+            <tr>
+                <td><span id="name0"></span></td>
+                <td><span id="stock"></span></td>
+                <td><span id="frozen"></span></td>
+            </tr>
+        </table>
+
+        <img class="SecondTitle" src="./images/step12-title2-2.png" />
+        <div class="input-div">
+            <span class="text">address:</span>
+            <input id="address1" name="address1" class="input-text" type="text" />
+            <input id="show1" type="button" value="显示" onclick="fshow1()" class="btnNormal" />
+            <span id="result1"></span>
+        </div>
+        <div id="info-left">
+            <div class="input-div">
+                <span class="text">姓名:</span>
+                <span id="name1" class="span-text"></span>
+            </div>
+            <div class="input-div">
+                <span class="text">证件号码:</span>
+                <span id="zhengjianhao1" class="span-text"></span>
+            </div>
+            <div class="input-div">
+                <span class="text"><span class="red">*</span>冻结数量:</span>
+                <input id="tofreeze" name="tofreeze" class="input-text" />
+            </div>
+            <div class="input-div">
+                <span class="text">到期日:</span>
+                <input id="deadline" name="deadline" class="input-text" />
+            </div>
+        </div>
+        <div id="info-right">
+            <div class="input-div-hide">
+                <span class="text">转让人证件号码:</span>
+                <input id="zhengjianhao1" class="input-text" type="text" value="{{zhengjianhao1}}" disabled="true" />
+            </div>
+            <div class="input-div">
+                <span class="text">手机号码:</span>
+                <span id="shoujihao1" class="span-text"></span>
+            </div>
+            <div class="input-div">
+                <span class="text">冻结类型:</span>
+                <input id="freezeType" name="freezeType" class="input-text" />
+            </div>
+            <div class="input-div-hide">
+                <span class="text">申请转让价格:</span>
+                <input id="jiage" class="input-text" type="text" value="{{jiage}}" disabled="true" />
+            </div>
+        </div>
+        <div class="input-div-reason">
+            <span class="text">质押理由:</span>
+            <input id="liyou" name="liyou" class="input-text" />
+        </div>
+
+        <img class="SecondTitle" src="./images/step12-title2-3.png" />
+        <div class="input-div">
+            <span class="text">address:</span>
+            <input id="address2" name="address2" class="input-text" type="text" />
+            <input id="show2" type="button" value="显示" onclick="fshow2()" class="btnNormal" />
+            <span id="result2"></span>
+        </div>
+        <div id="info-left">
+            <div class="input-div">
+                <span class="text">姓名:</span>
+                <span id="name2" class="span-text"></span>
+            </div>
+            <div class="input-div">
+                <span class="text">证件号码:</span>
+                <span id="zhengjianhao2" class="span-text"></span>
+            </div>
+            <div class="input-div">
+                <span class="text">账户余额:</span>
+                <span id="money" class="span-text"></span>
+            </div>
+        </div>
+        <div id="info-right">
+            <div class="input-div-hide">
+                <span class="text">受让人证件号码:</span>
+                <input id="zhengjianhao2" class="input-text" type="text" value="{{zhengjianhao2}}" disabled="true" />
+            </div>
+            <div class="input-div">
+                <span class="text">手机号码:</span>
+                <span id="shoujihao2" class="span-text"></span>
+            </div>
+            <div class="input-div">
+                <span class="text">转帐金额:</span>
+                <input id="pay" name="pay" class="input-text" />
+            </div>
+        </div>
+        <div class="section" id="btn">
+            <input id="cancel" type="button" value="取消" onclick="fcancel()" class="btnNormal" />
+            <input id="submit" type="button" value="确认冻结" onclick="fsubmit()" class="btnBlue" />
+        </div>
+        <div id="message">
+            <span id="result4"></span>
+        </div>
+        <!--<div class="section">
+            <button id="goback" class="btnNormal2">返回</button>
+        </div>-->
+    </div>
+    <div id="footer">
+        <img id="footer" src="./images/footer.jpg" />
+    </div>
+</body>
+
+</html>

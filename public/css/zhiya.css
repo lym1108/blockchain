@@ -1,0 +1,49 @@
+.text{
+    width: 110px;
+	display: block;
+	font-size: 14px;
+	float: left;
+	text-align: right;
+	line-height: 36px;
+	margin-right: 5px;
+}
+.span-text{
+    display: block;
+	float: left;
+    width: 367px;
+    height: 34px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    background: rgb(235, 235, 228);
+    padding-left: 10px;
+    margin-bottom: 25px;
+}
+.input-div {
+	margin-top: 25px;
+}
+.input-div-hide{
+	margin-top: 25px;
+    visibility: hidden;
+}
+#info-left {
+	float: left;
+}
+.input-div-reason{
+    margin-top: 25px;
+}
+#liyou{
+	width: 860px;
+}
+#btn{
+    clear: both;
+    width: 20%;
+    margin: 10px auto;
+}
+.red {
+    color: red;
+}
+#message{
+    width: 20%;
+    margin: 10px auto;
+    padding-left: 100px;
+}
