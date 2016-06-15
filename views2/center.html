@@ -10,24 +10,37 @@
     <script src="./center.js"></script>
 </head>
 
-<body style="background-image:url(./images/Step1.png)">
-    <div id="btn">
-        <button id="register">托管登记</button>
-        <button id="zhuanrang">转让申请列表(股交中心)</button>
-        <button id="shourang">受让申请列表</button>
-        <button id="zhuanrangGD">转让申请列表(股东)</button>
-	<button id="zhiya">质押</button>
-        <button id="goback">返回主页</button>
-        <button id="logon">登录</button>
+<body>
+    <div id="title" style="background-image:url(./images/Step1_1.jpg)">
+        <div id="div1">
+            <button id="register">托管登记</button>
+            <span id="logonResult1"></span>
+        </div>
+        <div id="div2">
+            <button id="zhuanrang">转让申请列表(股交中心)</button>
+            <span id="logonResult2"></span>
+        </div>
+        <div id="div3">
+            <button id="shourang">受让申请列表</button>
+            <span id="logonResult3"></span>
+        </div>
+        <div id="div4">
+            <button id="zhuanrangGD">转让申请列表(股东)</button>
+            <span id="logonResult4"></span>
+        </div>
+        <div id="div5">
+            <button id="zhiya">质押</button>
+            <span id="logonResult5"></span>
+        </div>
+        <div id="div6">
+            <button id="goback">返回主页</button>
+        </div>
+        <div id="div7">
+            <button id="logon">登录</button>
+            <span id="logonResult">{{logonStatus}}</span>
+        </div>
     </div>
-    <div id="message">
-        <span id="logonResult1"></span>
-        <span id="logonResult2"></span>
-        <span id="logonResult3"></span>
-        <span id="logonResult4"></span>
-	<span id="logonResult5"></span>
-        <span id="logonResult">{{logonStatus}}</span>
-    </div>
+    <img id="title2" src="./images/Step1_2.jpg" />
 </body>
 
 </html>

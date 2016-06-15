@@ -10,16 +10,21 @@
     <script src="./index.js"></script>
 </head>
 
-<body style="background-image:url(./images/Step0.png)">
-    <div id="btn">
-        <button id="logon">登录</button>
-        <button id="person">个人中心</button>
-        <button id="center">某地股权中心</button>
+<body >
+    <div id="title1" style="background-image:url(./images/Step0_1.jpg)">
+        <div id="div1">
+            <button id="logon">登录</button>
+            <span id="logonResult">{{logonStatus}}</span>
+        </div>
+        <div id="div2">
+            <button id="person">个人中心</button>
+            <span id="logonResult1"></span>
+        </div>
+        <div id="div3">
+            <button id="center">某地股权中心</button>
+        </div>
     </div>
-    <div id="message">
-        <span id="logonResult">{{logonStatus}}</span>
-        <span id="logonResult1"></span>
-    </div>
+    <img src="./images/Step0_2.jpg" />
 </body>
 
 </html>
