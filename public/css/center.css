@@ -45,6 +45,15 @@ body{
     font-size: 14px;
     margin-left: 10px;
 }
+#zhiya{
+
+     background: #0c0c39;
+    color: white;
+    border: 0px solid #CCCCCC;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-left: 10px;
+}
 #goback{
 
     background: #0c0c39;
@@ -86,6 +95,12 @@ body{
     margin-left: 133px;
 }
 #logonResult4{
+    display: block;
+    color: white;
+    float: left;
+    margin-left: 71px;
+}
+#logonResult5{
     display: block;
     color: white;
     float: left;

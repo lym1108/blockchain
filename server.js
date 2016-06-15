@@ -62,11 +62,9 @@ platform.writelog().watch(function(error,result){
 });
 
 //每隔2小时检查zhiya表中有没有到期的质押
-var interval = 6000;//1000*60*60*2 ;
+var interval = 1000*60*60*2 ;
 setInterval(function(){
-	var today = new Date();
-console.log(today);
-	connection.query('select * from zhiya,center_company  where center_company.addrCompany=zhiya.company and deadline<=? and status = ?',[today,'Y'],function(err,result){
+	connection.query('select * from zhiya,center_company  where center_company.addrCompany=zhiya.company and deadline<=curdate() and status = ?',['N'],function(err,result){
 		if(err){
 		     console.log('[select error]-到期质押轮询',err.message);
 		     return ;
@@ -78,8 +76,7 @@ console.log(today);
 			for(var i=0;i<result.length;i++)
 			{
 				var zhiyaId=result[i].id ;
-				//var txhash = platform.jieya.sendTransaction(result[i].addrCenter,result[i].company,result[i].addrZhiya,result[i].addrShouya,result[i].shuliang,result[i].jiage,{from: web3.eth.accounts[0]}) ;
-				var txhash = '';
+				var txhash = platform.jieya.sendTransaction(result[i].addrCenter,result[i].company,result[i].addrZhiya,result[i].addrShouya,result[i].shuliang,result[i].jiage,{from: web3.eth.accounts[0]}) ;
 				connection.query('update zhiya set status = ?,txhash2=? where id = ?',['Y',txhash,zhiyaId],function(err,result){
 					if(err){
 					     console.log('[update error]-质押信息表状态更新错误',err.message);
@@ -215,7 +212,7 @@ app.get('/applyUnfreeze', function(req, res){
 		passdata['company']=result[0].quancheng;
 		passdata['person']=result[0].name;
 		passdata['zhengjian']=result[0].zhengjian;
-		passdata['shouji']=result[0].zhouji;
+		passdata['shouji']=result[0].shouji;
 		passdata['freezeType']=result[0].type;
 		passdata['deadline']=result[0].deadline;
 		passdata['liyou']=result[0].liyou;

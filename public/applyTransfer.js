@@ -1,8 +1,5 @@
 window.onload = function() {
-        $("#goback").click(function() {
-				  window.location.href="/person?addr="+GetQueryString("addr");
-	});
-
+       
 
 };
 
@@ -38,4 +35,6 @@ function fapplyTransfer(){
 		});
 }
 
-
+function fgoback(){
+ window.location.href="/person?addr="+GetQueryString("addr");
+}
