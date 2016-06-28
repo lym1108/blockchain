@@ -1,0 +1,138 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    width: 1280px;
+    height: 970px;
+    background-repeat: no-repeat;
+}
+.wrapper {
+  background: transparent;
+  position: absolute;
+  width: 4em;
+  height: 4em;
+  left: 27em;
+  top: 11em;
+}
+.wrapper1 {
+  background: transparent;
+  position: absolute;
+  width: 4em;
+  height: 4em;
+      left: 17em;
+    top: 37em;
+}
+.dial-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2em;
+}
+.wedge {
+  height: 4em;
+  width: 2em;
+}
+.container1 {
+  left: 2em;
+}
+.container1 .wedge {
+  background: #ff6b6b;
+  animation: rotate-bg-1 8s infinite linear;
+  border-radius: 0 4em 4em 0;
+  left: 0;
+  transform-origin: 0 50%;
+}
+.container2 {
+  left: 0;
+}
+.container2 .wedge {
+  background: linear-gradient(to top, #ff6b6b 5%, transparent);
+  animation: rotate-bg-2 8s infinite linear;
+  border-radius: 4em 0 0 4em;
+  transform-origin: 2em 2em;
+}
+/* First animation moves 180 degrees in the first 2 seconds */
+@keyframes rotate-bg-1 {
+  100% {
+    transform: rotateZ(-360deg);
+  }
+}
+/* Second animation moves 180 degrees in the last 2 seconds */
+@keyframes rotate-bg-2 {
+  100% {
+    transform: rotateZ(-360deg);
+  }
+}       
+.wrapper::after {
+  content: "";
+  background: #b6bfd0;
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+  position: absolute;
+  top: 0.5em;
+  left: 0.5em;
+}  
+.wrapper1::after {
+  content: "";
+  background: #b6bfd0;
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+  position: absolute;
+  top: 0.5em;
+  left: 0.5em;
+}  
+.marker {
+  background: #ff6b6b;
+  border-radius: 50%;
+  height: 0.5em;
+  width: 0.5em;
+  position: absolute;
+  left: calc(50% - 0.25em);
+}
+.start {
+  bottom: 0;
+  animation: rotate-marker 8s infinite linear;
+  transform-origin: 50% -1.49em;
+}
+.end {
+  top: 0;
+  animation: rotate-marker 8s infinite linear;
+  transform-origin: 50% 2em;
+}
+@keyframes rotate-marker {
+  100% {
+    transform: rotateZ(-360deg);
+  }
+}
+#FirBtn{
+  width: 2.4em;
+  height: 2.4em;
+    position: absolute;
+     left: 33.6em;
+    top: 14.4em;
+
+    border: none;
+}
+#SecBtn{
+  width: 2.4em;
+  height: 2.4em;
+    position: absolute;
+      left: 21.5em;
+    top: 45.5em;
+    border: none;
+}
+#message{
+    
+      width: 18.4em;
+    height: 2.4em;
+    position: absolute;
+    left: 57.5em;
+    top: 9.5em;
+    color: white;
+}
+#message span{
+     word-break:normal; width:auto; display:block; white-space:pre-wrap;word-wrap : break-word ;overflow: hidden ;
+}
