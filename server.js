@@ -3,6 +3,7 @@ var app = express();
 var fs = require('fs');
 var Web3 = require('web3');
 var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+var web3_2 = new Web3(new Web3.providers.HttpProvider("http://192.168.78.140:8545"));
 var solc = require('solc');
 var hbs = require('hbs');
 var bodyParser = require('body-parser');
@@ -61,6 +62,12 @@ platform.writelog().watch(function(error,result){
 	}
 });
 
+
+var platform2 = web3_2.eth.contract([{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"money","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[],"name":"Center","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"person1","type":"address"},{"name":"person2","type":"address"},{"name":"stock","type":"uint256"},{"name":"money","type":"uint256"}],"name":"jieya","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"person1","type":"address"},{"name":"person2","type":"address"},{"name":"stock","type":"uint256"},{"name":"money","type":"uint256"}],"name":"zhiya","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"shareholder","type":"address"}],"name":"getStock","outputs":[{"name":"all","type":"uint256"},{"name":"frozen","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[{"name":"sender","type":"address"},{"name":"receiver","type":"address"},{"name":"amount","type":"uint256"}],"name":"fundsTx","outputs":[{"name":"result","type":"bool"}],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"person1","type":"address"},{"name":"person2","type":"address"},{"name":"amount","type":"uint256"},{"name":"price","type":"uint256"}],"name":"transfer","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"sender","type":"address"},{"name":"receiver","type":"address"},{"name":"amount","type":"uint256"}],"name":"stockTx","outputs":[{"name":"result","type":"bool"}],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"shareholder","type":"address"},{"name":"amount","type":"uint256"}],"name":"register","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"person","type":"address"},{"name":"amount","type":"uint256"}],"name":"modify","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"uint256"},{"name":"","type":"address"}],"name":"balances","outputs":[{"name":"all","type":"uint256"},{"name":"frozen","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"shareholder","type":"address"},{"name":"amount","type":"uint256"}],"name":"freeze","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"center","type":"address"},{"name":"company","type":"uint256"},{"name":"shareholder","type":"address"},{"name":"amount","type":"uint256"}],"name":"unfreeze","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"person","type":"address"}],"name":"getFunds","outputs":[{"name":"amount","type":"uint256"}],"type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"info","type":"string"}],"name":"writelog","type":"event"}]).at("0xb6e197aae39fb3be56dfadb5bc65a699eb19d14b") ;
+
+console.log(platform.getFunds.call("0x2c5a943989fb0aeda84dfc422f080ee38f948cec"));
+console.log(platform2.getFunds.call("0x2c5a943989fb0aeda84dfc422f080ee38f948cec"));
+
 //每隔2小时检查zhiya表中有没有到期的质押
 var interval = 1000*60*60*2 ;
 setInterval(function(){
@@ -86,10 +93,94 @@ setInterval(function(){
 				console.log('质押编号',zhiyaId,'已到期');
 			}
 		}
-		console.log('到期质押轮询:',today);
+		console.log('到期质押轮询:',Date());
 	});
 
 },interval);
+
+
+//监控页面
+app.get('/monitor', function(req, res){
+	res.render('monitor');
+});
+//监控1
+app.get('/monitor1', function(req, res){
+	var addrPerson =  req.query.addr  || '';
+	resText = "";
+	connection.query('select name,person_info.addr as addrPerson,quancheng,company_person.addrCompany as addrCompany ,addrCenter from person_info,company_person,center_company,company_info where person_info.addr=company_person.addrPerson and company_person.addrCompany = center_company.addrCompany and company_info.addr=company_person.addrCompany  order by addrPerson,addrCompany',[],function(err,result){
+		if(err){
+			console.log('[select error]-',err.message);
+			return ;
+		}
+		for(var i=0;i<result.length;i++)
+		{
+			if(i>=20)
+				break;
+			if(i==0 || result[i].name!=result[i-1].name)
+			{
+				resText+=result[i].name+'<br/>';
+			}
+			resText+='['+result[i].quancheng+']:';
+			var stock = platform.getStock.call(result[i].addrCenter,result[i].addrCompany,result[i].addrPerson) ;
+			resText+='持股:'+stock[0]+' 冻结:'+stock[1]+'<br/>';
+			if(i==result.length-1 || result[i].name!=result[i+1].name)
+				resText+='<br/>';	
+		}
+		connection.query('select * from person_info',[],function(err,result){
+			if(err){
+				console.log('[select error]-',err.message);
+				return ;
+			}
+			resText+='资金金额:'+'<br/>';
+			for(var j=0;j<result.length;j++)
+			{
+				resText+=result[j].name+':'+platform.getFunds.call(result[j].addr)+'<br/>';
+			}
+			res.send(resText); 
+		});
+	});	
+	
+});
+
+
+//监控2
+app.get('/monitor2', function(req, res){
+	var addrPerson =  req.query.addr  || '';
+	resText = "";
+	connection.query('select name,person_info.addr as addrPerson,quancheng,company_person.addrCompany as addrCompany ,addrCenter from person_info,company_person,center_company,company_info where person_info.addr=company_person.addrPerson and company_person.addrCompany = center_company.addrCompany and company_info.addr=company_person.addrCompany  order by addrPerson,addrCompany',[],function(err,result){
+		if(err){
+			console.log('[select error]-',err.message);
+			return ;
+		}
+		for(var i=0;i<result.length;i++)
+		{
+			if(i>=20)
+				break;
+			if(i==0 || result[i].name!=result[i-1].name)
+			{
+				resText+=result[i].name+'<br/>';
+			}
+			resText+='['+result[i].quancheng+']:';
+			var stock = platform2.getStock.call(result[i].addrCenter,result[i].addrCompany,result[i].addrPerson) ;
+			resText+='持股:'+stock[0]+' 冻结:'+stock[1]+'<br/>';
+			if(i==result.length-1 || result[i].name!=result[i+1].name)
+				resText+='<br/>';	
+		}
+		connection.query('select * from person_info',[],function(err,result){
+			if(err){
+				console.log('[select error]-',err.message);
+				return ;
+			}
+			resText+='资金金额:'+'<br/>';
+			for(var j=0;j<result.length;j++)
+			{
+				resText+=result[j].name+':'+platform2.getFunds.call(result[j].addr)+'<br/>';
+			}
+			res.send(resText); 
+		});
+	});	
+	
+});
 
 
 //主页

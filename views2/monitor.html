@@ -2,9 +2,11 @@
 <html>
 
 <head>
-    <title>监控中心</title>
+    <title>闪链私人股权交易平台</title>
     <meta http-equiv="http-Context" charset="utf-8" />
     <link rel="stylesheet" href="./css/monitor.css" />
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="./monitor.js"></script>
 </head>
 
 <body style="background-image:url(./images/monitor_1.jpg)">
@@ -28,10 +30,12 @@
         <div class="marker start"></div>
         <div class="marker end"></div>
     </div>
-    <button id="FirBtn" style="background-image:url(./images/monitor_2.jpg)"></button>
-    <button id="SecBtn" style="background-image:url(./images/monitor_3.jpg)"></button>
-    <div id="message">
-        <span>testesttesttetetestttestttesttsttetetestttestttesttsttetetestttestttesttsttetestttestttesttsttestt</span>
+ 
+<input id="FirBtn" type="button"  onclick="fmonitor(1)" style="background-image:url(./images/monitor_2.jpg)"/>
+<input id="SecBtn" type="button"  onclick="fmonitor(2)" style="background-image:url(./images/monitor_3.jpg)"/>
+   
+    <div >
+        <span id="message" ></span>
     </div>
 </body>
 

@@ -32,6 +32,10 @@ window.onload = function() {
 		window.location.href="/center?addr="+GetQueryString("addr");
 
 	});
+	$("#monitor").click(function() {
+		window.location.href="/monitor?addr="+GetQueryString("addr");
+
+	});
 };
 
 function GetQueryString(name)
