@@ -108,20 +108,20 @@ body{
   }
 }
 #FirBtn{
-  width: 2.4em;
-  height: 2.4em;
+  width: 32px;
+  height: 32px;
     position: absolute;
-     left: 33.6em;
-    top: 14.4em;
+         left: 448px;
+    top: 192px;
 
     border: none;
 }
 #SecBtn{
-  width: 2.4em;
-  height: 2.4em;
+  width: 32px;
+  height: 32px;
     position: absolute;
-      left: 21.5em;
-    top: 45.5em;
+      left: 287px;
+    top: 608px;
     border: none;
 }
 #message{
